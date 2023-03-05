@@ -7,7 +7,7 @@ public class strg_wander : MonoBehaviour
     // Start is called before the first frame update
     Vector3 lastWanderDirection;
     Vector3 lastDisplacement;
-    float wanderTimer;
+    public float wanderTimer;
     public float wanderInterval;
     public float wanderDegreesDelta;
     void Start()
@@ -20,6 +20,12 @@ public class strg_wander : MonoBehaviour
     {
         
     }
+
+    public Vector3 getSteering( float weight ,strg_steerinAgent agent)
+    {
+        return KinematicWander(agent) - agent.Velocity * weight;
+    }
+
 
     private Vector3 KinematicWander( strg_steerinAgent agent)
     {
@@ -42,8 +48,15 @@ public class strg_wander : MonoBehaviour
             float angle = (Random.value - Random.value) * wanderDegreesDelta;
             Vector3 direction = Quaternion.AngleAxis(angle, Vector3.up) * lastWanderDirection.normalized;
             Vector3 circleCenter = transform.position + lastDisplacement;
-            Vector3 destination = 
+            Vector3 destination = circleCenter + direction.normalized;
+            desiredVelocity = destination - transform.position;
+            desiredVelocity = desiredVelocity.normalized * agent.maxSpeed;
+
+            lastDisplacement = desiredVelocity;
+            lastWanderDirection = direction;
+            wanderTimer = 0;
         }
-       
+
+        return desiredVelocity;
     }
 }
