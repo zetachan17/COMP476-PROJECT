@@ -6,12 +6,11 @@ public class PlayerController : MonoBehaviour
 {
     private PlayerControls _playerControls;
     
-    [SerializeField] private GameObject target;
     [SerializeField] private float maxVelocity = 3f;
     [SerializeField] private float maxForce = 15f;
     
     private Vector3 velocity;
-    private float decreaseSpeed = 0.1f;
+    private float decreaseSpeed = 0.01f;
     
     private void Awake()
     {
@@ -23,6 +22,7 @@ public class PlayerController : MonoBehaviour
         _playerControls.Enable();
     }
     
+    // unsubscribe from input events
     private void OnDisable()
     {
         _playerControls.Disable();
@@ -30,6 +30,7 @@ public class PlayerController : MonoBehaviour
         _playerControls.Newactionmap.Shoot.performed -= Shoot;
     }
     
+    // subscribe to input events
     void Start()
     {
         velocity = Vector3.zero;
@@ -40,30 +41,24 @@ public class PlayerController : MonoBehaviour
     
     void Update()
     {
-    //     //if (_target != null)
-    //     //{
-    //         var desiredVelocity = (_target.transform.position - transform.position).normalized * _maxVelocity;
-    //         
-    //         var steering = desiredVelocity - velocity;
-    //         steering = Vector3.ClampMagnitude(steering, _maxForce);
-    //         
-    //         velocity = Vector3.ClampMagnitude(velocity + steering, _maxVelocity);
-    //         transform.position += velocity * Time.deltaTime;
-    //         transform.forward = velocity.normalized;
-    //         
-    //         Debug.DrawRay(transform.position, velocity.normalized * 2, Color.green);
-    //         Debug.DrawRay(transform.position, steering.normalized * 2, Color.red);
-    //     //}
         Vector3 move = _playerControls.Newactionmap.Move.ReadValue<Vector3>();
-        velocity = move * maxVelocity;
         
+        var desiredVelocity = move * maxVelocity;
+        var steering = desiredVelocity - velocity;
+        steering = Vector3.ClampMagnitude(steering, maxForce);
+
+        velocity = Vector3.ClampMagnitude(velocity + steering, maxVelocity);
+        
+        // TODO: Slow down when no input
         //SlowDown(move);
 
         transform.position += velocity * Time.deltaTime;
         
         if (velocity != Vector3.zero)
             transform.forward = velocity.normalized;
-
+        
+        Debug.DrawRay(transform.position, velocity.normalized * 2, Color.green);
+        Debug.DrawRay(transform.position, steering.normalized * 2, Color.red);
     }
     
     private void Move(InputAction.CallbackContext context)
