@@ -40,7 +40,7 @@ public class strg_evade : MonoBehaviour
         }
 
         Vector3 steering = agent.useFlee(futurPosition, 1) - agent.Velocity;
-        print(steering);
+        //print(steering);
         return steering* weight;
     }
 }

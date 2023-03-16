@@ -54,9 +54,9 @@ public class strg_steerinAgent : MonoBehaviour
             float valuethree = 10;
             valuethree += 4 * 5;
 
-            print("Value one : " + valueOne);
-            print("Value two : " + valueTwo);
-            print("Value three : " + valuethree);
+            //print("Value one : " + valueOne);
+            //print("Value two : " + valueTwo);
+            //print("Value three : " + valuethree);
             //  seeker.gameObject.GetComponent<SteeringAgent>().getAssigneCoin(coinObject);
             // agenOne.GetComponent<SteeringV2>().target = newtarget;
             //AgentTwo.GetComponent<SteeringV2>().target = newtarget;
