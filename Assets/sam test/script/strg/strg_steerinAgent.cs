@@ -39,7 +39,7 @@ public class strg_steerinAgent : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       //checkDistanceFromtarget();
+       checkDistanceFromtarget();
 
         steeringCalculation();
 
@@ -70,7 +70,7 @@ public class strg_steerinAgent : MonoBehaviour
         if (debugFleeToogle == true)
         {
             acceleration += evadeScript.getSteering(debugFleeWeight, this);
-            acceleration += pursueScript.getSteering(1, this);
+            acceleration += pursueScript.getSteering(2, this);
         }
         else
         {
