@@ -8,6 +8,7 @@ public class strg_steerinAgent : MonoBehaviour
     public Vector3 Velocity { get; set; }
     public float mass;
     public float maxSpeed;
+    public float rotationSpeed;
 
     public GameObject targetMoveAway;
     public GameObject targetMoveToward;
@@ -19,6 +20,9 @@ public class strg_steerinAgent : MonoBehaviour
     private strg_evade evadeScript;
     private collisionRayCast collisionDetection;
     public Vector3 acceleration = Vector3.zero;
+    private float rotationValue = 0.0f;
+    
+
 
     public GameObject debugTarget;
     public bool debugFleeToogle;
@@ -101,7 +105,7 @@ public class strg_steerinAgent : MonoBehaviour
         // agentTagetViz.transform.position += Velocity* Time.deltaTime;
         this.transform.position += Velocity * Time.deltaTime;
         this.transform.rotation = faceForward(this);
-       // this.transform.Rotate(0.0f,0.0f,1.0f, Space.Self);
+        this.transform.Rotate(0.0f,0.0f, rotationValue * rotationSpeed * Time.deltaTime, Space.Self);
     }
 
     public Quaternion faceForward(strg_steerinAgent agent)
@@ -153,6 +157,11 @@ public class strg_steerinAgent : MonoBehaviour
         return returnedSteering;
     }
 
+
+    public void setRotationAxis( float side)
+    {
+        rotationValue = side;
+    }
 
 
     //------------------------ Debug section , the folowing function are not suppose to be here in the final verions of the program

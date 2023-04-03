@@ -326,6 +326,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mass: 1
   maxSpeed: 12
+  rotationSpeed: 50
   targetMoveAway: {fileID: 0}
   targetMoveToward: {fileID: 800335642}
   acceleration: {x: 0, y: 0, z: 0}
@@ -1038,6 +1039,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mass: 1
   maxSpeed: 12
+  rotationSpeed: 0
   targetMoveAway: {fileID: 0}
   targetMoveToward: {fileID: 1861892801}
   acceleration: {x: 0, y: 0, z: 0}
@@ -2887,6 +2889,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mass: 1
   maxSpeed: 10
+  rotationSpeed: 0
   targetMoveAway: {fileID: 413901753}
   targetMoveToward: {fileID: 1883382756}
   acceleration: {x: 0, y: 0, z: 0}

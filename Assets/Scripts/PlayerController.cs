@@ -36,6 +36,7 @@ public class PlayerController : MonoBehaviour
         _playerControls.Disable();
         _playerControls.Newactionmap.Move.performed -= Move;
         _playerControls.Newactionmap.Shoot.performed -= Shoot;
+        _playerControls.Newactionmap.rotate.performed -= Rotate;
     }
     
     // subscribe to input events
@@ -45,6 +46,7 @@ public class PlayerController : MonoBehaviour
         
         _playerControls.Newactionmap.Move.performed += Move;
         _playerControls.Newactionmap.Shoot.performed += Shoot;
+        _playerControls.Newactionmap.rotate.performed += Rotate;
     }
     
     void Update()
@@ -115,6 +117,14 @@ public class PlayerController : MonoBehaviour
         }
         Debug.Log(move);
     }
+
+    public void Rotate(InputAction.CallbackContext context)
+    {
+        Vector2 directionRotation = _playerControls.Newactionmap.rotate.ReadValue<Vector2>();
+        Debug.Log(directionRotation);
+        _steringAgent.setRotationAxis(directionRotation.x);
+    }
+
 
     public void Shoot(InputAction.CallbackContext context)
     {
