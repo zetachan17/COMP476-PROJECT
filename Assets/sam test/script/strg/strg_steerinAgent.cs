@@ -101,6 +101,7 @@ public class strg_steerinAgent : MonoBehaviour
         // agentTagetViz.transform.position += Velocity* Time.deltaTime;
         this.transform.position += Velocity * Time.deltaTime;
         this.transform.rotation = faceForward(this);
+       // this.transform.Rotate(0.0f,0.0f,1.0f, Space.Self);
     }
 
     public Quaternion faceForward(strg_steerinAgent agent)
@@ -109,8 +110,8 @@ public class strg_steerinAgent : MonoBehaviour
         {
             return agent.transform.rotation;
         }
-
-        return Quaternion.LookRotation(agent.Velocity);
+        // have to specify wich direction is upward to prevent the object from fliping then reachin 90 and -90 on x axis
+        return Quaternion.LookRotation(agent.Velocity, agent.transform.up);
     }
 
     /// <summary>
