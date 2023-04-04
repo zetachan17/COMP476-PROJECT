@@ -5,10 +5,8 @@ using UnityEditor;
 using UnityEngine;
 
 [RequireComponent(typeof(strg_seek), typeof(StatTracked))]
-public class ScoutBahaviour : BT.Tree
+public class ScoutBahaviour : EntityBehaviour
 {
-    public LayerMask objectsToDetect;
-    public HeavyHitterehaviour teammate;
 
     protected override Node SetupTree()
     {
