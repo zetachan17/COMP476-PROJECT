@@ -7,9 +7,9 @@ namespace BT {
 
     internal class ObjectInSightCond : Node
     {
-        private ScoutBahaviour scoutBahaviour;
+        private EntityBehaviour scoutBahaviour;
 
-        public ObjectInSightCond(ScoutBahaviour scoutBahaviour)
+        public ObjectInSightCond(EntityBehaviour scoutBahaviour)
         {
             this.scoutBahaviour = scoutBahaviour;
         }
@@ -58,9 +58,9 @@ namespace BT {
 
     internal class IsPowerUpCond : Node
     {
-        private ScoutBahaviour scoutBahaviour;
+        private EntityBehaviour scoutBahaviour;
 
-        public IsPowerUpCond(ScoutBahaviour scoutBahaviour)
+        public IsPowerUpCond(EntityBehaviour scoutBahaviour)
         {
             this.scoutBahaviour = scoutBahaviour;
         }
@@ -103,9 +103,9 @@ namespace BT {
 
     internal class SeekTarget : Node
     {
-        private ScoutBahaviour scoutBahaviour;
+        private EntityBehaviour scoutBahaviour;
 
-        public SeekTarget(ScoutBahaviour scoutBahaviour)
+        public SeekTarget(EntityBehaviour scoutBahaviour)
         {
             this.scoutBahaviour = scoutBahaviour;
         }
@@ -177,16 +177,16 @@ namespace BT {
         {
             GameObject powerup = GetData<GameObject>("to_seek");
             Assert.IsNotNull(powerup);
-            scoutBahaviour.teammate.communicatedpreferedTarget = powerup;
+            scoutBahaviour.teammate.preferedTarget = powerup;
             return NodeState.SUCCESS;
         }
     }
 
     internal class Avoid : Node
     {
-        private ScoutBahaviour scoutBahaviour;
+        private EntityBehaviour scoutBahaviour;
 
-        public Avoid(ScoutBahaviour scoutBahaviour)
+        public Avoid(EntityBehaviour scoutBahaviour)
         {
             this.scoutBahaviour = scoutBahaviour;
         }
@@ -209,9 +209,9 @@ namespace BT {
 
     internal class IsEnemy : Node
     {
-        private ScoutBahaviour scoutBahaviour;
+        private EntityBehaviour scoutBahaviour;
 
-        public IsEnemy(ScoutBahaviour scoutBahaviour)
+        public IsEnemy(EntityBehaviour scoutBahaviour)
         {
             this.scoutBahaviour = scoutBahaviour;
         }
@@ -260,9 +260,9 @@ namespace BT {
 
     internal class IsState : Node
     {
-        private ScoutBahaviour scoutBahaviour;
+        private EntityBehaviour scoutBahaviour;
 
-        public IsState(ScoutBahaviour scoutBahaviour)
+        public IsState(EntityBehaviour scoutBahaviour)
         {
             this.scoutBahaviour = scoutBahaviour;
         }
@@ -311,5 +311,85 @@ namespace BT {
             return NodeState.FAILURE;
         }
     }
+    internal class ClosestObject : Node
+    {
+        private EntityBehaviour scoutBahaviour;
 
+        public ClosestObject(EntityBehaviour scoutBahaviour)
+        {
+            this.scoutBahaviour = scoutBahaviour;
+        }
+
+        public override NodeState Evaluate()
+        {
+            // Get object from data
+            List<GameObject> objs = GetData<List<GameObject>>("objects_in_sight");
+            Assert.IsNotNull(objs);
+
+            objs.Sort((a, b) => 
+                Vector3.Distance(a.transform.position, scoutBahaviour.transform.position)
+                .CompareTo(
+                    Vector3.Distance(b.transform.position, scoutBahaviour.transform.position))
+                );
+
+            SetData("to_seek", objs[0]);
+
+            return NodeState.SUCCESS;
+        }
+    }
+
+    internal class TargetIsPrefered : Node
+    {
+        private HeavyHitterehaviour heavyHitterehaviour;
+
+        public TargetIsPrefered(HeavyHitterehaviour heavyHitterehaviour)
+        {
+            this.heavyHitterehaviour = heavyHitterehaviour;   
+        }
+
+        public override NodeState Evaluate()
+        {
+            if (heavyHitterehaviour.preferedTarget == null)
+                return NodeState.FAILURE;
+
+
+            List<GameObject> objs = GetData<List<GameObject>>("objects_in_sight");
+            Assert.IsNotNull(objs);
+
+            foreach (GameObject obj in objs)
+            {
+                if (obj == heavyHitterehaviour.preferedTarget)
+                {
+                    SetData("to_seek", obj);
+                    return NodeState.SUCCESS;
+                }
+            }
+
+            return NodeState.FAILURE;
+        }
+    }
+
+    internal class PersueAndFireMissile : Node
+    {
+        private HeavyHitterehaviour heavyHitterehaviour;
+
+        public PersueAndFireMissile(HeavyHitterehaviour heavyHitterehaviour)
+        {
+            this.heavyHitterehaviour = heavyHitterehaviour;
+        }
+
+        public override NodeState Evaluate()
+        {
+            GameObject enemy = GetData<GameObject>("to_seek");
+            Assert.IsNotNull(enemy);
+
+            // This returns a vector3 but we need to set the velocity of the agent
+            Assert.IsTrue(false);
+            //scoutBahaviour.GetComponent<strg_pursue>().getSteering(
+            //          enemy.transform.position, scoutBahaviour.GetComponent<strg_steerinAgent>()
+            //);
+
+            return NodeState.SUCCESS;
+        }
+    }
 }
