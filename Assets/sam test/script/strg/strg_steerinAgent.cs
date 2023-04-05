@@ -10,9 +10,10 @@ public class strg_steerinAgent : MonoBehaviour
     public float maxSpeed;
 
     public GameObject targetMoveAway;
-    public GameObject targetMoveToward;
 
+    public GameObject targetMoveToward;
     public GameObject generalTarget;
+    public GameObject closestNode;
 
     private strg_seek  seekScript;
     private strg_wander wandeScript;
@@ -24,9 +25,12 @@ public class strg_steerinAgent : MonoBehaviour
     public Vector3 acceleration = Vector3.zero;
 
     public GameObject debugTarget;
-    public bool debugFleeToogle;
+    public bool evadeToogle;
+    public bool awayFromPath = false;
 
     public float debugFleeWeight;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -38,13 +42,16 @@ public class strg_steerinAgent : MonoBehaviour
         fleeScript = GetComponent<strg_flee>();
         evadeScript = GetComponent<strg_evade>();
         arrivedScript = GetComponent<strg_arrived>();
+        initialiseAgent();
+
+
     }
 
     // Update is called once per frame
     void Update()
     {
        checkDistanceFromtarget();
-
+        
         steeringCalculation();
 
         if (Input.GetKey(KeyCode.C))
@@ -71,19 +78,35 @@ public class strg_steerinAgent : MonoBehaviour
     {
         acceleration = Vector3.zero;
 
-        GetComponent<pathNavigation>().nodeCheck();
 
-        if (debugFleeToogle == true)
+        if (awayFromPath)
         {
-            acceleration += evadeScript.getSteering(debugFleeWeight, this);
-            //acceleration += pursueScript.getSteering(2, this);
-            acceleration += arrivedScript.getSteering(4, this);
+
+            // IF the ai is trying to reache a target, we use pursue.
+
+            if (evadeToogle == true)
+            {
+                acceleration += evadeScript.getSteering(debugFleeWeight, this);
+                
+            }
+           
+            acceleration += pursueScript.getSteering(2, this);
+            
         }
         else
         {
+            // If the ai is just moving around by folowing the path of node, we use arrived script to prevent infinite looping around a node
 
-            // acceleration += pursueScript.getSteering(1, this);
-            acceleration += arrivedScript.getSteering(2, this);
+            GetComponent<pathNavigation>().nodeCheck();
+
+            if (evadeToogle == true)
+            {
+                acceleration += evadeScript.getSteering(debugFleeWeight, this);
+            }
+
+            acceleration += arrivedScript.getSteering(4, this);
+            
+
         }
 
 
@@ -123,6 +146,46 @@ public class strg_steerinAgent : MonoBehaviour
         return Quaternion.LookRotation(agent.Velocity, agent.transform.up);
     }
 
+    public void initialiseAgent()
+    {
+        closestNode = closestNode = findClosestNode.getClosestNode(transform.position).gameObject;
+        GetComponent<pathNavigation>().nodeCheck();
+    }
+
+    /// <summary>
+    /// General function that allow to change the working of the steering agent. Check value can be set depending on the case.
+    /// </summary>
+    /// <param name="action"> Int value that indicate wich specific set of action we want to apply</param>
+    /// <param name="objectList"> List of GameObject that can be used to pass multiple object like target  and enemy to evade. The order depend on the function</param>
+    public void setSteering(int action, List<GameObject> objectList)
+    {
+        switch(action){
+            
+            case 1:
+                //seeking a specific object
+                evadeToogle = false;
+                targetMoveToward = objectList[0].gameObject;
+                awayFromPath = true;
+                steeringCalculation();
+                break;
+            case 2:
+                evadeToogle = true;
+                targetMoveAway = objectList[0].gameObject;
+                awayFromPath = true;
+                steeringCalculation();
+                break;
+            default:
+                evadeToogle = false;
+                if (awayFromPath)
+                {
+                    awayFromPath = false;
+                    closestNode = closestNode = closestNode = findClosestNode.getClosestNode(transform.position).gameObject;
+                    GetComponent<pathNavigation>().findPathToTarget(closestNode, generalTarget);
+                }
+                steeringCalculation();
+                break;
+        }
+    }
     /// <summary>
     /// The fonction is called to get acess to a specific  type of seek behaviour from and outside file.
     /// </summary>

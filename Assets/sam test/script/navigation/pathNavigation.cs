@@ -47,5 +47,16 @@ public class pathNavigation : MonoBehaviour
             //No need to change the target node
         }
     }
+    /// <summary>
+    /// Function called when we want the ai to go back to navigating using the node list
+    /// </summary>
+    /// <param name="target"> GameObject of what node we want to reache </param>
+    /// <param name="closestNodePosition"> GameObject reference of the closes node , the navigation path will start from here </param>
+    public void findPathToTarget(GameObject target, GameObject closestNodePosition)
+    {
+        
+        pathOfNode = GameObject.Find("nodeList").GetComponent<pathFinding>().findPath(closestNodePosition.GetComponent<node>(), target.GetComponent<node>(), new List<node>());
+
+    }
 
 }
