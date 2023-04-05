@@ -12,11 +12,14 @@ public class strg_steerinAgent : MonoBehaviour
     public GameObject targetMoveAway;
     public GameObject targetMoveToward;
 
+    public GameObject generalTarget;
+
     private strg_seek  seekScript;
     private strg_wander wandeScript;
     private strg_pursue pursueScript;
     private strg_flee fleeScript;
     private strg_evade evadeScript;
+    private strg_arrived arrivedScript;
     private collisionRayCast collisionDetection;
     public Vector3 acceleration = Vector3.zero;
 
@@ -34,6 +37,7 @@ public class strg_steerinAgent : MonoBehaviour
         pursueScript = GetComponent<strg_pursue>();
         fleeScript = GetComponent<strg_flee>();
         evadeScript = GetComponent<strg_evade>();
+        arrivedScript = GetComponent<strg_arrived>();
     }
 
     // Update is called once per frame
@@ -67,16 +71,22 @@ public class strg_steerinAgent : MonoBehaviour
     {
         acceleration = Vector3.zero;
 
+        GetComponent<pathNavigation>().nodeCheck();
+
         if (debugFleeToogle == true)
         {
             acceleration += evadeScript.getSteering(debugFleeWeight, this);
-            acceleration += pursueScript.getSteering(2, this);
+            //acceleration += pursueScript.getSteering(2, this);
+            acceleration += arrivedScript.getSteering(4, this);
         }
         else
         {
 
-         acceleration += pursueScript.getSteering(1, this);
+            // acceleration += pursueScript.getSteering(1, this);
+            acceleration += arrivedScript.getSteering(2, this);
         }
+
+
 
         Vector3[] wallToDoge = collisionDetection.vissionDetection();
         Vector3 tempAcc = Vector3.zero;
@@ -110,7 +120,7 @@ public class strg_steerinAgent : MonoBehaviour
             return agent.transform.rotation;
         }
 
-        return Quaternion.LookRotation(agent.Velocity);
+        return Quaternion.LookRotation(agent.Velocity, agent.transform.up);
     }
 
     /// <summary>
