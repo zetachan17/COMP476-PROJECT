@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using BT;
-using UnityEngine.Experimental.AI;
 
 public class HeavyHitterehaviour : EntityBehaviour
 {
@@ -34,6 +33,7 @@ public class HeavyHitterehaviour : EntityBehaviour
                 new ClosestObject(this),
                 new Avoid(this)
             }),
+            new DefaultSeeting(this)
         });
     }
 

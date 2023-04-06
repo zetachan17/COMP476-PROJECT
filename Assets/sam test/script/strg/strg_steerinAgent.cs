@@ -157,18 +157,19 @@ public class strg_steerinAgent : MonoBehaviour
     /// </summary>
     /// <param name="action"> Int value that indicate wich specific set of action we want to apply</param>
     /// <param name="objectList"> List of GameObject that can be used to pass multiple object like target  and enemy to evade. The order depend on the function</param>
-    public void setSteering(int action, List<GameObject> objectList)
+    public enum SteeringOptions {  Persue, Evade, Other }    
+    public void setSteering(SteeringOptions action, List<GameObject> objectList)
     {
         switch(action){
             
-            case 1:
+            case SteeringOptions.Persue:
                 //seeking a specific object
                 evadeToogle = false;
                 targetMoveToward = objectList[0].gameObject;
                 awayFromPath = true;
                 steeringCalculation();
                 break;
-            case 2:
+            case SteeringOptions.Evade:
                 evadeToogle = true;
                 targetMoveAway = objectList[0].gameObject;
                 awayFromPath = true;

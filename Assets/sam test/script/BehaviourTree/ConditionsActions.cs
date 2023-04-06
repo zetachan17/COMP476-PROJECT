@@ -103,11 +103,11 @@ namespace BT {
 
     internal class SeekTarget : Node
     {
-        private EntityBehaviour scoutBahaviour;
+        private EntityBehaviour bahaviour;
 
         public SeekTarget(EntityBehaviour scoutBahaviour)
         {
-            this.scoutBahaviour = scoutBahaviour;
+            this.bahaviour = scoutBahaviour;
         }
 
         public override NodeState Evaluate()
@@ -116,12 +116,10 @@ namespace BT {
             Assert.IsNotNull(to_seek);
 
             // TODO: This returns a Vector3, but we need to set the velocity of the agent
-            Assert.IsTrue(false);
-            scoutBahaviour.GetComponent<strg_seek>().kinematickSeek(
-                scoutBahaviour.GetComponent<strg_steerinAgent>(),
-                to_seek.transform.position
+            bahaviour.GetComponent<strg_steerinAgent>().setSteering(
+                strg_steerinAgent.SteeringOptions.Persue,
+                new() { to_seek}
             );
-
             return NodeState.SUCCESS;
         }
     }
@@ -197,10 +195,9 @@ namespace BT {
             Assert.IsNotNull(powerup);
 
             // TODO: This returns a vector3 but we need to set the velocity of the agent
-            Assert.IsTrue(false);
-            scoutBahaviour.GetComponent<strg_flee>().kinematickFlee(
-                scoutBahaviour.GetComponent<strg_steerinAgent>(),
-                powerup.transform.position
+            scoutBahaviour.GetComponent<strg_steerinAgent>().setSteering(
+                strg_steerinAgent.SteeringOptions.Evade,
+                new() { powerup }
             );
 
             return NodeState.SUCCESS;
@@ -248,11 +245,9 @@ namespace BT {
             GameObject enemy = GetData<GameObject>("to_seek");
             Assert.IsNotNull(enemy);
 
-            // This returns a vector3 but we need to set the velocity of the agent
-            Assert.IsTrue(false);
-            //scoutBahaviour.GetComponent<strg_pursue>().getSteering(
-            //          enemy.transform.position, scoutBahaviour.GetComponent<strg_steerinAgent>()
-            //);
+            scoutBahaviour.GetComponent<strg_steerinAgent>().setSteering(
+                     strg_steerinAgent.SteeringOptions.Persue, new() { enemy }
+            );
 
             return NodeState.SUCCESS;
         }
@@ -385,9 +380,27 @@ namespace BT {
 
             // This returns a vector3 but we need to set the velocity of the agent
             Assert.IsTrue(false);
-            //scoutBahaviour.GetComponent<strg_pursue>().getSteering(
-            //          enemy.transform.position, scoutBahaviour.GetComponent<strg_steerinAgent>()
-            //);
+            heavyHitterehaviour.GetComponent<strg_steerinAgent>().setSteering(
+                      strg_steerinAgent.SteeringOptions.Persue, new() { enemy });
+
+            return NodeState.SUCCESS;
+        }
+    }
+
+    internal class DefaultSeeting : Node {
+        private EntityBehaviour entityBehaviour;
+
+        public DefaultSeeting(EntityBehaviour entityBehaviour)
+        {
+            this.entityBehaviour = entityBehaviour;
+        }
+
+        public override NodeState Evaluate()
+        {
+            strg_steerinAgent agent = entityBehaviour.GetComponent<strg_steerinAgent>();
+            Assert.IsNotNull(agent);
+
+            agent.setSteering(strg_steerinAgent.SteeringOptions.Other, null);
 
             return NodeState.SUCCESS;
         }

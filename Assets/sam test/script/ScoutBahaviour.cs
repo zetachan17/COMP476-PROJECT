@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-[RequireComponent(typeof(strg_seek), typeof(StatTracked))]
+[RequireComponent(typeof(strg_steerinAgent), typeof(StatTracked))]
 public class ScoutBahaviour : EntityBehaviour
 {
 
@@ -50,7 +50,8 @@ public class ScoutBahaviour : EntityBehaviour
                   new ObjectInSightCond(this),
                   new IsObstacle(this),
                   new Avoid(this)
-              })
+              }),
+              new DefaultSeeting(this)
         });
     }
 
