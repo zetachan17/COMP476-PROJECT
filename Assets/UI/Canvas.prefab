@@ -330,7 +330,8 @@ MonoBehaviour:
   timerText: {fileID: 176951059090459017}
   startTime: 300
   speedText: {fileID: 176951059050828634}
-  powerUpText: {fileID: 176951057287411756}
+  powerUpImageList: []
+  powerUpDescriptionList: []
 --- !u!1 &176951059050828644
 GameObject:
   m_ObjectHideFlags: 0

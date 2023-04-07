@@ -16,8 +16,8 @@ public class Canvas : MonoBehaviour
     [SerializeField] private TextMeshProUGUI speedText;
     
     [Header("PowerUp")]
-    [SerializeField] private TextMeshProUGUI powerUpText;
-    [SerializeField] private Image powerUpImage;
+    [SerializeField] private List<Sprite> powerUpImageList;
+    [SerializeField] private List<Sprite> powerUpDescriptionList;
     
     // Start is called before the first frame update
     void Start()
