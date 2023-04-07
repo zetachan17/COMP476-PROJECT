@@ -85,41 +85,58 @@ public class PlayerController : MonoBehaviour
         {
             _steringAgent.targetMoveToward = listMovingTarget[0];
             _animator.SetInteger("turn", 0);
+            _animator.SetFloat("vertical", 0);
         }
         else if(move == Vector3.left)
         {
             _steringAgent.targetMoveToward = listMovingTarget[1];
             _animator.SetInteger("turn", 1);
+            _animator.SetFloat("vertical", 0);
         }
         else if(move == Vector3.right)
         {
             _steringAgent.targetMoveToward = listMovingTarget[2];
             _animator.SetInteger("turn", -1);
+            _animator.SetFloat("vertical", 0);
         }
         else if(move == Vector3.up)
         {
             _steringAgent.targetMoveToward = listMovingTarget[3];
+            _animator.SetFloat("vertical", 1.0f);
+            _animator.SetInteger("turn", -0);
         }
         else if(move == Vector3.down)
         {
             _steringAgent.targetMoveToward = listMovingTarget[4];
+            _animator.SetFloat("vertical", -1.0f);
+            _animator.SetInteger("turn", -0);
         }
         else if (move == offAngleList[0])
         {
            
             _steringAgent.targetMoveToward = listMovingTarget[5];
+            _animator.SetFloat("vertical", 1.0f);
+            _animator.SetInteger("turn", 1);
         }
         else if (move == offAngleList[1])
         {
             _steringAgent.targetMoveToward = listMovingTarget[6];
+            _animator.SetFloat("vertical", 1.0f);
+            _animator.SetInteger("turn", -1);
+
         }
         else if (move == offAngleList[2])
         {
             _steringAgent.targetMoveToward = listMovingTarget[7];
+            _animator.SetFloat("vertical", -1.0f);
+            _animator.SetInteger("turn", 1);
+
         }
         else if (move == offAngleList[3])
         {
             _steringAgent.targetMoveToward = listMovingTarget[8];
+            _animator.SetFloat("vertical", -1.0f);
+            _animator.SetInteger("turn", -1);
         }
         Debug.Log(move);
     }
