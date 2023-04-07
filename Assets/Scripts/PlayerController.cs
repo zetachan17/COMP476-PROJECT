@@ -14,6 +14,8 @@ public class PlayerController : MonoBehaviour
     private strg_steerinAgent _steringAgent;
     private Vector3[] offAngleList;// ( 0 = up left ) ( 1 = up right ) (2 = down left) (3 = down right)
 
+    private Animator _animator;
+
     private void Awake()
     {
         _playerControls = new PlayerControls();
@@ -23,6 +25,7 @@ public class PlayerController : MonoBehaviour
         offAngleList[1] = new Vector3(1, 1, 0);
         offAngleList[2] = new Vector3(-1, -1, 0);
         offAngleList[3] = new Vector3(1, -1, 0);
+        _animator = GetComponentInChildren<Animator>();
     }
     
     private void OnEnable()
@@ -81,14 +84,17 @@ public class PlayerController : MonoBehaviour
         if(move == Vector3.zero)
         {
             _steringAgent.targetMoveToward = listMovingTarget[0];
+            _animator.SetInteger("turn", 0);
         }
         else if(move == Vector3.left)
         {
             _steringAgent.targetMoveToward = listMovingTarget[1];
+            _animator.SetInteger("turn", 1);
         }
         else if(move == Vector3.right)
         {
             _steringAgent.targetMoveToward = listMovingTarget[2];
+            _animator.SetInteger("turn", -1);
         }
         else if(move == Vector3.up)
         {
