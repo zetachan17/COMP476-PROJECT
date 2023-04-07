@@ -5,7 +5,7 @@ using UnityEngine;
 public class PowerUp : MonoBehaviour
 {
     [SerializeField]
-    protected StatTracked.Stat modifies;
+    public StatTracked.Stat modifies;
 
     [SerializeField]
     protected float newValue;   // We make this a function if we want the new value to depend on the old value

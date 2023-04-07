@@ -44,6 +44,8 @@ public class StatTracked : MonoBehaviour
         MaxSpeed,
         MaxHp,
         Hp,
+        Visibility, // Stealth
+        Sheild
     }
 
     [Serializable]

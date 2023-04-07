@@ -122,7 +122,7 @@ public class PlayerController : MonoBehaviour
     {
         Vector2 directionRotation = _playerControls.Newactionmap.rotate.ReadValue<Vector2>();
         Debug.Log(directionRotation);
-        _steringAgent.setRotationAxis(directionRotation.x);
+        _steringAgent.setRotationAxis(directionRotation.x*-1);
     }
 
 
