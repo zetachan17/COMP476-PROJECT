@@ -9,6 +9,7 @@ public class strg_steerinAgent : MonoBehaviour
     public float mass;
     public float maxSpeed;
     public float rotationSpeed;
+    public bool player;
 
     public GameObject targetMoveAway;
 
@@ -82,8 +83,11 @@ public class strg_steerinAgent : MonoBehaviour
     {
         acceleration = Vector3.zero;
 
-
-        if (awayFromPath)
+        if(player == true)
+        {
+            acceleration += pursueScript.getSteering(2, this);
+        }
+        else if (awayFromPath)
         {
 
             // IF the ai is trying to reache a target, we use pursue.
@@ -101,7 +105,7 @@ public class strg_steerinAgent : MonoBehaviour
         {
             // If the ai is just moving around by folowing the path of node, we use arrived script to prevent infinite looping around a node
 
-            GetComponent<pathNavigation>().nodeCheck();
+             GetComponent<pathNavigation>().nodeCheck();
 
             if (evadeToogle == true)
             {
