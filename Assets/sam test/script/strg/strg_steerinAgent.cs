@@ -8,7 +8,7 @@ public class strg_steerinAgent : MonoBehaviour
     public Vector3 Velocity { get; set; }
     public float mass;
     public float maxSpeed;
-    public float rotationSpeed;
+    public float rotationSpeed; //used to control the speed of the lookForward function
     public bool player;
 
     public GameObject targetMoveAway;
@@ -26,6 +26,7 @@ public class strg_steerinAgent : MonoBehaviour
 
     private aiAnimation _aiAnimationScript;
     private collisionRayCast collisionDetection;
+
     public Vector3 acceleration = Vector3.zero;
     private float rotationValue = 0.0f;
     
@@ -170,6 +171,7 @@ public class strg_steerinAgent : MonoBehaviour
         this.transform.rotation = faceForward(this);
         this.transform.Rotate(0.0f,0.0f, rotationValue * rotationSpeed * Time.deltaTime, Space.Self);
         GetComponent<collisionWIthWall>().sphereCheckGround(oldPosition);
+        //Debug.Log(maxSpeed);
     }
 
     public Quaternion faceForward(strg_steerinAgent agent)
@@ -186,6 +188,16 @@ public class strg_steerinAgent : MonoBehaviour
     {
         closestNode = findClosestNode.getClosestNode(transform.position).gameObject;
         GetComponent<pathNavigation>().nodeCheck();
+        maxSpeed = GetComponent<StatTracked>().GetStat(StatTracked.Stat.MaxSpeed);
+    }
+
+    // is called by StatTracked when a change of stat occure;
+    public void OnStatChange(StatTracked.Stat stat, float oldValue, float newValue)
+    {
+        if (stat == StatTracked.Stat.MaxSpeed)
+        {
+            maxSpeed = newValue;
+        }
     }
 
     /// <summary>

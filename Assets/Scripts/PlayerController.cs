@@ -138,7 +138,7 @@ public class PlayerController : MonoBehaviour
             _animator.SetFloat("vertical", -1.0f);
             _animator.SetInteger("turn", -1);
         }
-        Debug.Log(move);
+       // Debug.Log(move);
     }
 
     public void Rotate(InputAction.CallbackContext context)

@@ -5,7 +5,12 @@ using UnityEngine;
 public class strg_seek : MonoBehaviour
 {
    
-    public float maxTurnAngle = 30f;
+    private float maxTurnAngle = 50f;
+
+    private void Start()
+    {
+        maxTurnAngle = GetComponent<StatTracked>().GetStat(StatTracked.Stat.MaxTurnAngle);
+    }
 
     public Vector3 kinematickSeek(strg_steerinAgent agent, Vector3 tagetPosition)
     {
@@ -58,5 +63,13 @@ public class strg_seek : MonoBehaviour
 
         return steering * weight;
 
+    }
+
+    public void OnStatChange(StatTracked.Stat stat, float oldValue, float newValue)
+    {
+        if(stat == StatTracked.Stat.MaxTurnAngle)
+        {
+            maxTurnAngle = newValue;
+        }
     }
 }
