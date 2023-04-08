@@ -4290,7 +4290,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b13c91a2e70fa5140812a6cac904e222, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxTurnAngle: 20
 --- !u!114 &413901761
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14758,6 +14757,102 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0bd93bc91bdf184bba7d37aae5d3a28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1263436635 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9044495799482268463, guid: a99ed8feb20f5244e910811fc9f8238d, type: 3}
+  m_PrefabInstance: {fileID: 1837181991}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1263436609}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b13c91a2e70fa5140812a6cac904e222, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1263436637 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9044495799482268461, guid: a99ed8feb20f5244e910811fc9f8238d, type: 3}
+  m_PrefabInstance: {fileID: 1837181991}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1263436609}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfe4fb9b8780aca4aa5132cb7ee70f6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1263436638
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1263436609}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df1e6fea283f46b4b9306dc325471c6f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Stats:
+  - type: 0
+    value: 20
+  - type: 1
+    value: 50
+  - type: 2
+    value: 100
+  - type: 3
+    value: 100
+  OnStatChanged:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1263436635}
+        m_TargetAssemblyTypeName: strg_seek, Assembly-CSharp
+        m_MethodName: OnStatChange
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1263436637}
+        m_TargetAssemblyTypeName: strg_steerinAgent, Assembly-CSharp
+        m_MethodName: OnStatChange
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1263436639}
+        m_TargetAssemblyTypeName: healthManagment, Assembly-CSharp
+        m_MethodName: OnStatChange
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1263436639
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1263436609}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: faa3a6c299880584da8f4397043dd411, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 0
+  currentHealth: 0
 --- !u!1001 &1270969865
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -21221,6 +21316,8 @@ GameObject:
   - component: {fileID: 1861892814}
   - component: {fileID: 1861892815}
   - component: {fileID: 1861892816}
+  - component: {fileID: 1861892817}
+  - component: {fileID: 1861892818}
   m_Layer: 0
   m_Name: shipParent (1)
   m_TagString: Untagged
@@ -21284,7 +21381,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b13c91a2e70fa5140812a6cac904e222, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxTurnAngle: 50
 --- !u!114 &1861892806
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21313,7 +21409,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mass: 1
-  maxSpeed: 20
+  maxSpeed: 1
   rotationSpeed: 0
   player: 0
   targetMoveAway: {fileID: 413901753}
@@ -21402,7 +21498,6 @@ MonoBehaviour:
   slowRadius: 40
   arrivedRadius: 3
   timeToTarget: 5
-  maxTurnAngle: 50
 --- !u!114 &1861892813
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21455,6 +21550,116 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0bd93bc91bdf184bba7d37aae5d3a28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1861892817
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1861892801}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df1e6fea283f46b4b9306dc325471c6f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Stats:
+  - type: 0
+    value: 60
+  - type: 1
+    value: 50
+  - type: 2
+    value: 100
+  - type: 3
+    value: 100
+  OnStatChanged:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1861892807}
+        m_TargetAssemblyTypeName: strg_steerinAgent, Assembly-CSharp
+        m_MethodName: OnStatChange
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1861892807}
+        m_TargetAssemblyTypeName: strg_steerinAgent, Assembly-CSharp
+        m_MethodName: OnStatChange
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1861892805}
+        m_TargetAssemblyTypeName: strg_seek, Assembly-CSharp
+        m_MethodName: OnStatChange
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1861892809}
+        m_TargetAssemblyTypeName: strg_evade, Assembly-CSharp
+        m_MethodName: OnStatChange
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1861892812}
+        m_TargetAssemblyTypeName: strg_arrived, Assembly-CSharp
+        m_MethodName: OnStatChange
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1861892818}
+        m_TargetAssemblyTypeName: healthManagment, Assembly-CSharp
+        m_MethodName: OnStatChange
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1861892818
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1861892801}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: faa3a6c299880584da8f4397043dd411, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 0
+  currentHealth: 0
 --- !u!1 &1864741595 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7807689773013409703, guid: 22f6c27d2e26eff4e87c2bacbba4190c, type: 3}
@@ -23452,6 +23657,7 @@ GameObject:
   - component: {fileID: 2027229718}
   - component: {fileID: 2027229722}
   - component: {fileID: 2027229723}
+  - component: {fileID: 2027229724}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -23552,9 +23758,25 @@ MonoBehaviour:
   m_Stats:
   - type: 2
     value: 0
+  - type: 1
+    value: 0
+  - type: 0
+    value: 0
   OnStatChanged:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 2027229724}
+        m_TargetAssemblyTypeName: statVariableDictionary, Assembly-CSharp
+        m_MethodName: testing
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: 
         m_MethodName: 
@@ -23579,6 +23801,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0bd93bc91bdf184bba7d37aae5d3a28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2027229724
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2027229716}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dad0bfc1fe2129b408421d125fbd9dc9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxTurnAngle: 0
+  baseTurnAngle: 0
+  maxHP: 0
+  baseMaxSpeed: 0
 --- !u!1 &2027817749 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5361281312315068073, guid: 79891dcf978b8e54ea33f66f82748c7b, type: 3}
