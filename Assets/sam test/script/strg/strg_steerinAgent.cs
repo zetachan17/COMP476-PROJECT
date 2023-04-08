@@ -23,6 +23,8 @@ public class strg_steerinAgent : MonoBehaviour
     private strg_flee fleeScript;
     private strg_evade evadeScript;
     private strg_arrived arrivedScript;
+
+    private aiAnimation _aiAnimationScript;
     private collisionRayCast collisionDetection;
     public Vector3 acceleration = Vector3.zero;
     private float rotationValue = 0.0f;
@@ -50,6 +52,11 @@ public class strg_steerinAgent : MonoBehaviour
         evadeScript = GetComponent<strg_evade>();
         arrivedScript = GetComponent<strg_arrived>();
         initialiseAgent();
+
+        if(player == false)
+        {
+            _aiAnimationScript = GetComponent<aiAnimation>();
+        }
 
 
     }
@@ -142,43 +149,17 @@ public class strg_steerinAgent : MonoBehaviour
         acceleration /= mass;
         Vector3 oldVelocity = Velocity;
         Velocity += acceleration * Time.deltaTime;
-
-
         //Velocity += distanceDifference*Time.deltaTime;
         Velocity = Vector3.ClampMagnitude(Velocity, maxSpeed);
+
+
         if (player == false)
         {
-            Debug.Log(Velocity + "Velocity");
-            Debug.Log((Velocity- oldVelocity) + "Acceleration");
+            
+            //Debug.Log((Velocity- oldVelocity) + "Acceleration");
             Vector3 modifiedAngle = Velocity - oldVelocity;
-            if(modifiedAngle.x < 0)
-            {
-                _animator.SetFloat("turn", 1);
-            }
-            else if(modifiedAngle.x > 0)
-            {
-                _animator.SetFloat("turn", -1);
-            }
-            else
-            {
-                _animator.SetFloat("turn", 0);
-            }
 
-            if (modifiedAngle.y < 0)
-            {
-
-                _animator.SetFloat("vertical", -1);
-            }
-            else if (modifiedAngle.y > 0)
-            {
-                _animator.SetFloat("vertical", 1);
-            }
-            else
-            {
-                _animator.SetFloat("vertical", 0);
-            }
-
-
+            _aiAnimationScript.setAnimation(modifiedAngle);
         }
 
         // agentTagetViz.transform.position += Velocity* Time.deltaTime;
