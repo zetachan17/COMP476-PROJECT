@@ -38,6 +38,7 @@ public class strg_steerinAgent : MonoBehaviour
     public float debugFleeWeight;
 
     public Animator _animator;
+    public Vector3 oldPosition;
 
 
     // Start is called before the first frame update
@@ -163,9 +164,12 @@ public class strg_steerinAgent : MonoBehaviour
         }
 
         // agentTagetViz.transform.position += Velocity* Time.deltaTime;
+
+        oldPosition = this.transform.position;
         this.transform.position += Velocity * Time.deltaTime;
         this.transform.rotation = faceForward(this);
         this.transform.Rotate(0.0f,0.0f, rotationValue * rotationSpeed * Time.deltaTime, Space.Self);
+        GetComponent<collisionWIthWall>().sphereCheckGround(oldPosition);
     }
 
     public Quaternion faceForward(strg_steerinAgent agent)
@@ -180,7 +184,7 @@ public class strg_steerinAgent : MonoBehaviour
 
     public void initialiseAgent()
     {
-        closestNode = closestNode = findClosestNode.getClosestNode(transform.position).gameObject;
+        closestNode = findClosestNode.getClosestNode(transform.position).gameObject;
         GetComponent<pathNavigation>().nodeCheck();
     }
 
