@@ -35,6 +35,8 @@ public class strg_steerinAgent : MonoBehaviour
 
     public float debugFleeWeight;
 
+    public Animator _animator;
+
 
     // Start is called before the first frame update
     void Start()
@@ -118,27 +120,67 @@ public class strg_steerinAgent : MonoBehaviour
         }
 
 
-
-        Vector3[] wallToDoge = collisionDetection.vissionDetection();
-        Vector3 tempAcc = Vector3.zero;
-
-        foreach (Vector3 obstacle in wallToDoge)
+        if(player == false)
         {
-            if (obstacle != Vector3.zero)
-            {
-                 tempAcc += seekScript.seekSpecificPointNoDrift(20, this, obstacle);
+            Vector3[] wallToDoge = collisionDetection.vissionDetection();
+            Vector3 tempAcc = Vector3.zero;
 
-                //nbSteering++;
+            foreach (Vector3 obstacle in wallToDoge)
+            {
+                if (obstacle != Vector3.zero)
+                {
+                    tempAcc += seekScript.seekSpecificPointNoDrift(5, this, obstacle);
+
+                    //nbSteering++;
+                }
+
             }
+            acceleration += tempAcc;
 
         }
-        acceleration += tempAcc;
+
         acceleration /= mass;
+        Vector3 oldVelocity = Velocity;
         Velocity += acceleration * Time.deltaTime;
 
 
         //Velocity += distanceDifference*Time.deltaTime;
         Velocity = Vector3.ClampMagnitude(Velocity, maxSpeed);
+        if (player == false)
+        {
+            Debug.Log(Velocity + "Velocity");
+            Debug.Log((Velocity- oldVelocity) + "Acceleration");
+            Vector3 modifiedAngle = Velocity - oldVelocity;
+            if(modifiedAngle.x < 0)
+            {
+                _animator.SetFloat("turn", 1);
+            }
+            else if(modifiedAngle.x > 0)
+            {
+                _animator.SetFloat("turn", -1);
+            }
+            else
+            {
+                _animator.SetFloat("turn", 0);
+            }
+
+            if (modifiedAngle.y < 0)
+            {
+
+                _animator.SetFloat("vertical", -1);
+            }
+            else if (modifiedAngle.y > 0)
+            {
+                _animator.SetFloat("vertical", 1);
+            }
+            else
+            {
+                _animator.SetFloat("vertical", 0);
+            }
+
+
+        }
+
         // agentTagetViz.transform.position += Velocity* Time.deltaTime;
         this.transform.position += Velocity * Time.deltaTime;
         this.transform.rotation = faceForward(this);
