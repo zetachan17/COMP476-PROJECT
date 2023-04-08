@@ -5,11 +5,14 @@ using UnityEngine;
 public class strg_evade : MonoBehaviour
 {
     private int evadeDistance = 10;
+    private float maxTurnAngle = 50;
+
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        
+        maxTurnAngle = GetComponent<StatTracked>().GetStat(StatTracked.Stat.MaxTurnAngle);
     }
+
 
     // Update is called once per frame
     void Update()
@@ -42,5 +45,13 @@ public class strg_evade : MonoBehaviour
         Vector3 steering = agent.useFlee(futurPosition, 1) - agent.Velocity;
         //print(steering);
         return steering* weight;
+    }
+
+    public void OnStatChange(StatTracked.Stat stat, float oldValue, float newValue)
+    {
+        if (stat == StatTracked.Stat.MaxTurnAngle)
+        {
+            maxTurnAngle = newValue;
+        }
     }
 }

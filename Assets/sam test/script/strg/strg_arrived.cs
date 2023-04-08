@@ -9,13 +9,14 @@ public class strg_arrived : MonoBehaviour
     public float arrivedRadius;
     //  public float maxAccel; //max speed;
     public float timeToTarget;
-    public float maxTurnAngle;
+    private float maxTurnAngle;
 
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        
+        maxTurnAngle = GetComponent<StatTracked>().GetStat(StatTracked.Stat.MaxTurnAngle);
     }
+
 
     // Update is called once per frame
     void Update()
@@ -70,5 +71,13 @@ public class strg_arrived : MonoBehaviour
         Vector3 steering = newDesiredVelocity - agent.Velocity;
 
         return steering * weight;
+    }
+
+    public void OnStatChange(StatTracked.Stat stat, float oldValue, float newValue)
+    {
+        if (stat == StatTracked.Stat.MaxTurnAngle)
+        {
+            maxTurnAngle = newValue;
+        }
     }
 }

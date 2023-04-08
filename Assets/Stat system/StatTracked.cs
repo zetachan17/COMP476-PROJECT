@@ -42,6 +42,7 @@ public class StatTracked : MonoBehaviour
 
     public enum Stat {
         MaxSpeed,
+        MaxTurnAngle,
         MaxHp,
         Hp,
         Visibility, // Stealth

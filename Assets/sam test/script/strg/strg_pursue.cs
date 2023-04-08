@@ -5,10 +5,11 @@ using UnityEngine;
 public class strg_pursue : MonoBehaviour
 {
     private int pursueDistance = 10;
+    private StatTracked _stat;
     // Start is called before the first frame update
     void Start()
     {
-        
+        _stat = GetComponent<StatTracked>();
     }
 
     // Update is called once per frame
