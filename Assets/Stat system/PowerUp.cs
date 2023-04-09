@@ -43,14 +43,12 @@ public class PowerUp : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log("Collision");
         StatTracked tracker = collision.gameObject.GetComponent<StatTracked>();
         if (tracker != null)
         {
-            Debug.Log("Tracker");
             Apply(tracker);
+            Destroy(gameObject);
         }
-            
     }
 
     private IEnumerator Wait() { 
