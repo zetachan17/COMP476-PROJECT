@@ -17656,32 +17656,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 176951059060313818, guid: eb2234ef66380414983b2c254e39e70a, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1869505986656531629, guid: eb2234ef66380414983b2c254e39e70a, type: 3}
-      propertyPath: gradient.ctime0
-      value: 19661
-      objectReference: {fileID: 0}
-    - target: {fileID: 1869505986656531629, guid: eb2234ef66380414983b2c254e39e70a, type: 3}
-      propertyPath: gradient.ctime1
-      value: 39321
-      objectReference: {fileID: 0}
-    - target: {fileID: 1869505986656531631, guid: eb2234ef66380414983b2c254e39e70a, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1869505986926487349, guid: eb2234ef66380414983b2c254e39e70a, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1869505986926487349, guid: eb2234ef66380414983b2c254e39e70a, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4188800738635684281, guid: eb2234ef66380414983b2c254e39e70a, type: 3}
-      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

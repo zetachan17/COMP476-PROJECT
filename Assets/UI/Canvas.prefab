@@ -804,9 +804,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1869505986540826914, guid: 4114caa687415df4ca4ad653e47492ca, type: 3}
+      propertyPath: gradient.ctime0
+      value: 19661
+      objectReference: {fileID: 0}
+    - target: {fileID: 1869505986540826914, guid: 4114caa687415df4ca4ad653e47492ca, type: 3}
+      propertyPath: gradient.ctime1
+      value: 39321
+      objectReference: {fileID: 0}
     - target: {fileID: 1869505986540826915, guid: 4114caa687415df4ca4ad653e47492ca, type: 3}
       propertyPath: m_Value
-      value: 4
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 1869505986540826915, guid: 4114caa687415df4ca4ad653e47492ca, type: 3}
+      propertyPath: m_MaxValue
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 1869505986540826915, guid: 4114caa687415df4ca4ad653e47492ca, type: 3}
+      propertyPath: m_WholeNumbers
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1869505987344573114, guid: 4114caa687415df4ca4ad653e47492ca, type: 3}
       propertyPath: m_AnchorMax.x
