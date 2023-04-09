@@ -33,7 +33,7 @@ public class Canvas : MonoBehaviour
     void Start()
     {
         currentTime = startTime;
-        currentSpeed = agent._currentSpeed;
+        currentSpeed = agent.speed;
         _powerUpImage = powerUpImage.GetComponent<Image>();
         _powerUpDescription = powerUpDescription.GetComponent<Image>();
     }
