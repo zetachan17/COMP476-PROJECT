@@ -25,8 +25,8 @@ public class healthManagment : MonoBehaviour
         stat = GetComponent<StatTracked>();
         
         _healthBarSlider = healthBar.GetComponent<Slider>();
-        _healthBarFill = healthBar.GetComponentInChildren<Image>();
-        _healthBarGradient = healthBar.GetComponent<Gradient>();
+        _healthBarFill = healthBar.GetComponentInChildren<HealthBar>().fill;
+        _healthBarGradient = healthBar.GetComponent<HealthBar>().gradient;
     }
 
 
