@@ -55,7 +55,7 @@ public class detectSphereColisions : MonoBehaviour
                 else
                 {
                    Debug.Log(this.name + "was Hit from the side or back" + angle);
-                    GetComponent<interShipCollision>().hitFromTheSide();
+                    GetComponent<interShipCollision>().hitFromTheSide(ship);
                 }
             }
         }

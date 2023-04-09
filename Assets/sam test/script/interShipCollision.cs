@@ -8,11 +8,13 @@ public class interShipCollision : MonoBehaviour
 
    
 
-    public void hitFromTheSide()
+    public void hitFromTheSide(GameObject killer)
     {
         //implement Function Get hit from the side
 
         Debug.Log(this.name + " was hit from the side");
+        
+        this.gameObject.GetComponent<healthManagment>().setHptoZero(killer);
     }
 
     public void hitFromTheFront()

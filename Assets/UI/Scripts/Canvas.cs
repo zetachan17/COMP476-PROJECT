@@ -57,6 +57,12 @@ public class Canvas : MonoBehaviour
             currentTime = 0;
             DisplayTime(currentTime);
             // stop game
+
+            //Sam addition
+            //winner[0]-> winnig tean number, winner[1]-> total score.
+            List<int> winner = GameObject.Find("gameManager").GetComponent<totalScore>().getWinner();
+            
+            
             Time.timeScale = 0;
         }
     }
