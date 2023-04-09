@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using Microsoft.Unity.VisualStudio.Editor;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.Serialization;
+using Image = UnityEngine.UI.Image;
 
 public class Canvas : MonoBehaviour
 {
@@ -14,22 +16,33 @@ public class Canvas : MonoBehaviour
     
     [Header("Speed")]
     [SerializeField] private TextMeshProUGUI speedText;
+    [SerializeField] private strg_steerinAgent agent;
+    private float currentSpeed;
     
     [Header("PowerUp")]
     [SerializeField] private List<Sprite> powerUpImageList;
     [SerializeField] private List<Sprite> powerUpDescriptionList;
+
+    [SerializeField] private GameObject powerUpImage;
+    [SerializeField] private GameObject powerUpDescription;
+    
+    private Image _powerUpImage;
+    private Image _powerUpDescription;
     
     // Start is called before the first frame update
     void Start()
     {
         currentTime = startTime;
+        currentSpeed = agent.maxSpeed;
+        _powerUpImage = powerUpImage.GetComponent<Image>();
+        _powerUpDescription = powerUpDescription.GetComponent<Image>();
     }
 
     // Update is called once per frame
     void Update()
     {
         UpdateTimer();
-        //UpdateSpeed();
+        UpdateSpeed();
     }
 
     private void UpdateTimer()
@@ -50,7 +63,7 @@ public class Canvas : MonoBehaviour
     
     private void UpdateSpeed()
     {
-        // speedText.text = "Speed: " + PlayerController.Instance.Speed;
+        speedText.text = currentSpeed.ToString();
     }
     
     private void DisplayTime(float timeToDisplay)
@@ -59,5 +72,50 @@ public class Canvas : MonoBehaviour
         float seconds = Mathf.FloorToInt(timeToDisplay % 60);
 
         timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+    }
+    
+    public void UpdatePowerUpImage(int index)
+    {
+        switch (index)
+        {
+            
+            case 0:
+                // HP
+                _powerUpImage.enabled = true;
+                _powerUpImage.sprite = powerUpImageList[0];
+                _powerUpDescription.enabled = true;
+                _powerUpDescription.sprite = powerUpDescriptionList[0];
+                break;
+            case 1:
+                // Speed
+                _powerUpImage.enabled = true;
+                _powerUpImage.sprite = powerUpImageList[1];
+                _powerUpDescription.enabled = true;
+                _powerUpDescription.sprite = powerUpDescriptionList[1];
+                break;
+            case 2:
+                // Weight
+                _powerUpImage.enabled = true;
+                _powerUpImage.sprite = powerUpImageList[2];
+                _powerUpDescription.enabled = true;
+                _powerUpDescription.sprite = powerUpDescriptionList[2];
+                break;
+            case 3:
+                // Attack
+                _powerUpImage.enabled = true;
+                _powerUpImage.sprite = powerUpImageList[3];
+                _powerUpDescription.enabled = true;
+                _powerUpDescription.sprite = powerUpDescriptionList[3];
+                break;
+            case 4:
+                // Defense
+                _powerUpImage.enabled = true;
+                _powerUpImage.sprite = powerUpImageList[4];
+                _powerUpDescription.enabled = true;
+                _powerUpDescription.sprite = powerUpDescriptionList[4];
+                break;
+            default:
+                break;
+        }
     }
 }

@@ -11,7 +11,7 @@ public class PowerUp : MonoBehaviour
     protected float newValue;   // We make this a function if we want the new value to depend on the old value
 
     [SerializeField]
-    protected float duration;   // Duration of the powerup in seconds.\
+    protected float duration = 2;   // Duration of the powerup in seconds.\
 
     [SerializeField]
     protected UnityEvent<StatTracked> OnPowerUpApplied;
@@ -24,15 +24,20 @@ public class PowerUp : MonoBehaviour
         obj.SetStat(modifies, newValue);
         OnPowerUpApplied?.Invoke(obj);
         StartCoroutine(Wait());
-        obj.SetStat(modifies, oldStat);
-        OnPowerUpExpired?.Invoke(obj);
+        //obj.SetStat(modifies, oldStat);
+        //OnPowerUpExpired?.Invoke(obj);
     }
 
     private void OnCollisionEnter(Collision collision)
     {
+        Debug.Log("Collision");
         StatTracked tracker = collision.gameObject.GetComponent<StatTracked>();
         if (tracker != null)
+        {
+            Debug.Log("Tracker");
             Apply(tracker);
+        }
+            
     }
 
     private IEnumerator Wait() { 

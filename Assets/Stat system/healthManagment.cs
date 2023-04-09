@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class healthManagment : MonoBehaviour
 {
@@ -10,11 +12,21 @@ public class healthManagment : MonoBehaviour
     [SerializeField] private float maxHealth;
     [SerializeField] private float currentHealth;
     private StatTracked stat;
+    
+    [SerializeField] private GameObject healthBar;
+    
+    private Slider _healthBarSlider;
+    private Image _healthBarFill;
+    private Gradient _healthBarGradient;
     void Start()
     {
         maxHealth = GetComponent<StatTracked>().GetStat(StatTracked.Stat.MaxHp);
         currentHealth = GetComponent<StatTracked>().GetStat(StatTracked.Stat.Hp);
         stat = GetComponent<StatTracked>();
+        
+        _healthBarSlider = healthBar.GetComponent<Slider>();
+        _healthBarFill = healthBar.GetComponentInChildren<Image>();
+        _healthBarGradient = healthBar.GetComponent<Gradient>();
     }
 
 
@@ -34,6 +46,18 @@ public class healthManagment : MonoBehaviour
         updateUI();
     }
 
+    public void ChangeMaxHP(float amount)
+    {
+        //stat.SetStat(StatTracked.Stat.MaxHp, amount);
+        maxHealth = stat.GetStat(StatTracked.Stat.MaxHp);
+        updateUI();
+    }
+
+    private void Update()
+    {
+        //Debug.Log("Current Health: " + currentHealth);
+        Debug.Log( gameObject.name + "maxHealth: " + maxHealth + " currentHealth: " + currentHealth);
+    }
 
     public void checkIfDead()
     {
@@ -46,6 +70,9 @@ public class healthManagment : MonoBehaviour
     public void updateUI()
     {
         //TO-Do update the UI
+        _healthBarSlider.maxValue = maxHealth;
+        _healthBarSlider.value = currentHealth;
+        _healthBarFill.color = _healthBarGradient.Evaluate(_healthBarSlider.normalizedValue);
     }
 
     public void OnStatChange(StatTracked.Stat stat, float oldValue, float newValue)
