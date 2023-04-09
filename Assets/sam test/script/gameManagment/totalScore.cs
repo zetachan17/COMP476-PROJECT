@@ -29,7 +29,7 @@ public class totalScore : MonoBehaviour
         for (int i = 0; i < nbPlayer; i++)
         {
             child = playerListe.transform.GetChild(i).gameObject;
-            int memberOFTeam = child.GetComponent<EntityBehaviour>().teamNumber;
+            int memberOFTeam = child.GetComponent<individualScore>().teamNumber;
             int nbkill = child.GetComponent<individualScore>().getKill();
 
             teamScore[memberOFTeam - 1] = teamScore[memberOFTeam - 1] + nbkill;

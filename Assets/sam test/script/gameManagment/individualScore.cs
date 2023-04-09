@@ -8,6 +8,7 @@ public class individualScore : MonoBehaviour
 
     private int kill = 0;
     private int death = 0;
+    public int teamNumber;
     void Start()
     {
         

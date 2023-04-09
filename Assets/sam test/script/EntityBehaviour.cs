@@ -9,7 +9,6 @@ public abstract class EntityBehaviour : BT.Tree
 {
     public LayerMask objectsToDetect;
     public EntityBehaviour teammate;
-    public int teamNumber;
     public GameObject preferedTarget;
 }
 
