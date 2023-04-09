@@ -45,6 +45,7 @@ public class StatTracked : MonoBehaviour
         MaxTurnAngle,
         MaxHp,
         Hp,
+        Attack,
         Visibility, // Stealth
         Sheild
     }

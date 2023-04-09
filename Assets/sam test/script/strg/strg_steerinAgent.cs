@@ -8,6 +8,7 @@ public class strg_steerinAgent : MonoBehaviour
     public Vector3 Velocity { get; set; }
     public float mass;
     public float maxSpeed;
+    public float speed;
     public float rotationSpeed; //used to control the speed of the lookForward function
     public bool player;
 
@@ -150,6 +151,7 @@ public class strg_steerinAgent : MonoBehaviour
 
         acceleration /= mass;
         Vector3 oldVelocity = Velocity;
+        
         Velocity += acceleration * Time.deltaTime;
         //Velocity += distanceDifference*Time.deltaTime;
         Velocity = Vector3.ClampMagnitude(Velocity, maxSpeed);
@@ -165,13 +167,17 @@ public class strg_steerinAgent : MonoBehaviour
         }
 
         // agentTagetViz.transform.position += Velocity* Time.deltaTime;
-
+        float debugSpeed = (Velocity.x + Velocity.y + Velocity.z) / 3;
         oldPosition = this.transform.position;
+        
         this.transform.position += Velocity * Time.deltaTime;
         this.transform.rotation = faceForward(this);
         this.transform.Rotate(0.0f,0.0f, rotationValue * rotationSpeed * Time.deltaTime, Space.Self);
         GetComponent<collisionWIthWall>().sphereCheckGround(oldPosition);
-        //Debug.Log(maxSpeed);
+        speed = (Vector3.Distance(oldPosition, this.transform.position) / Time.deltaTime);
+        speed = Mathf.Round(speed * 10.0f) * 0.1f;
+       
+        
     }
 
     public Quaternion faceForward(strg_steerinAgent agent)

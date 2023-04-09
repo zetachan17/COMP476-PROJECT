@@ -14,9 +14,8 @@ GameObject:
   - component: {fileID: 9062107611668498639}
   - component: {fileID: 9062107611668498640}
   - component: {fileID: 9062107611668498641}
-  - component: {fileID: 5083057469455761183}
   m_Layer: 0
-  m_Name: Health PowerUp
+  m_Name: Defense PowerUp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -62,8 +61,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2091b8213bc8da4438d2382a38114eda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  modifies: 3
-  newValue: 5
+  modifies: 6
+  newValue: 2
   duration: 2
   OnPowerUpApplied:
     m_PersistentCalls:
@@ -164,7 +163,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 358123428, guid: c190c7c4568c7374696326b5239d7246, type: 3}
+  m_Sprite: {fileID: 1628343049, guid: c190c7c4568c7374696326b5239d7246, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -188,15 +187,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _player: {fileID: 0}
---- !u!114 &5083057469455761183
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9062107611668498633}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c22cedd4a17d864fbecc1b6cf747139, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

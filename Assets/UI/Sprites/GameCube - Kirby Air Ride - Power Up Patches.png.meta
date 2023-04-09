@@ -235,9 +235,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 791
-        y: 720
+        y: 722
         width: 114
-        height: 31
+        height: 29
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -423,10 +423,10 @@ TextureImporter:
       name: GameCube - Kirby Air Ride - Power Up Patches_60
       rect:
         serializedVersion: 2
-        x: 792
-        y: 597
-        width: 126
-        height: 125
+        x: 793
+        y: 596
+        width: 125
+        height: 124
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}

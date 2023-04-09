@@ -21,9 +21,9 @@ public class PowerUp : MonoBehaviour
 
     public void Apply(StatTracked obj) {
         var oldStat = obj.GetStat(modifies);
-        obj.SetStat(modifies, newValue);
+        obj.SetStat(modifies, oldStat+newValue);    //Small boost at the time 
         OnPowerUpApplied?.Invoke(obj);
-        StartCoroutine(Wait());
+        //StartCoroutine(Wait()); // The stat power up are not temporary , they stay intill the actor get killed.
         //obj.SetStat(modifies, oldStat);
         //OnPowerUpExpired?.Invoke(obj);
     }
