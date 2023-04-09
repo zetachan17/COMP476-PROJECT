@@ -94,7 +94,7 @@ public class Canvas : MonoBehaviour
                 _powerUpDescription.sprite = powerUpDescriptionList[1];
                 break;
             case 2:
-                // Weight
+                // Turn
                 _powerUpImage.enabled = true;
                 _powerUpImage.sprite = powerUpImageList[2];
                 _powerUpDescription.enabled = true;

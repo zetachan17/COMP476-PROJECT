@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine.Events;
 using UnityEngine;
@@ -18,6 +19,18 @@ public class PowerUp : MonoBehaviour
 
     [SerializeField]
     protected UnityEvent<StatTracked> OnPowerUpExpired;
+    
+    [SerializeField] private float timeToDestroy;
+    
+    private void Update()
+    {
+        SelfDestroy();
+    }
+
+    private void SelfDestroy()
+    {
+        Destroy(gameObject, timeToDestroy);
+    }
 
     public void Apply(StatTracked obj) {
         var oldStat = obj.GetStat(modifies);

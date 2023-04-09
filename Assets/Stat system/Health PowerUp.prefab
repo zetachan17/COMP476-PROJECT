@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 9062107611668498638}
   - component: {fileID: 9062107611668498639}
   - component: {fileID: 9062107611668498640}
-  - component: {fileID: 9062107611668498641}
   - component: {fileID: 5083057469455761183}
   m_Layer: 0
   m_Name: Health PowerUp
@@ -107,6 +106,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  timeToDestroy: 30
 --- !u!54 &9062107611668498639
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -175,19 +175,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &9062107611668498641
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9062107611668498633}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 036e3ff83e48f7e4c9ca600ef17c20ae, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _player: {fileID: 0}
 --- !u!114 &5083057469455761183
 MonoBehaviour:
   m_ObjectHideFlags: 0
