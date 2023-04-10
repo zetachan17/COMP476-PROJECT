@@ -178,6 +178,8 @@ MonoBehaviour:
   targetMoveToward: {fileID: 0}
   generalTarget: {fileID: 0}
   closestNode: {fileID: 0}
+  seekScript: {fileID: 0}
+  pursueScript: {fileID: 0}
   _aiAnimationScript: {fileID: 0}
   acceleration: {x: 0, y: 0, z: 0}
   initialInitialisation: 0
@@ -365,6 +367,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0bd93bc91bdf184bba7d37aae5d3a28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  layer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!114 &2118603173842302944
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -386,6 +391,10 @@ MonoBehaviour:
     value: 100
   - type: 3
     value: 100
+  - type: 4
+    value: 10
+  - type: 6
+    value: 10
   OnStatChanged:
     m_PersistentCalls:
       m_Calls:
@@ -622,7 +631,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2118603173853842602}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.645, y: 0, z: -0.398}
+  m_LocalPosition: {x: -2.254, y: 0, z: -0.275}
   m_LocalScale: {x: 0.30606, y: 0.30606, z: 0.30606}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -823,7 +832,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2118603174312131298}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.72, y: 0, z: -0.4}
+  m_LocalPosition: {x: 1.987, y: 0, z: -0.362}
   m_LocalScale: {x: 0.30606, y: 0.30606, z: 0.30606}
   m_ConstrainProportionsScale: 1
   m_Children: []

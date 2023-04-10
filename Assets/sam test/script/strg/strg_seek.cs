@@ -65,6 +65,19 @@ public class strg_seek : MonoBehaviour
 
     }
 
+
+    public Vector3 missleSeek(moveMissle missle)
+    {
+        Vector3 desiredVelocity = missle.targetMoveToward.transform.position - missle.transform.position;
+        desiredVelocity = desiredVelocity.normalized * missle.maxSpeed;
+
+
+        Vector3 steering = desiredVelocity - missle.Velocity;
+        return steering;
+
+
+
+    }
     public void OnStatChange(StatTracked.Stat stat, float oldValue, float newValue)
     {
         if(stat == StatTracked.Stat.MaxTurnAngle)

@@ -18,9 +18,10 @@ GameObject:
   - component: {fileID: 617694017935718683}
   - component: {fileID: 63868182726185368}
   - component: {fileID: 917167559706195556}
-  - component: {fileID: 6055007289373637317}
   - component: {fileID: 6672592589612396026}
   - component: {fileID: 1231392857417860641}
+  - component: {fileID: 7274426947496876951}
+  - component: {fileID: 4582460756794518067}
   m_Layer: 0
   m_Name: Missile
   m_TagString: Untagged
@@ -186,38 +187,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b13c91a2e70fa5140812a6cac904e222, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &6055007289373637317
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8193644085180237162}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dfe4fb9b8780aca4aa5132cb7ee70f6a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mass: 10
-  maxSpeed: 30
-  speed: 0
-  rotationSpeed: 10
-  player: 0
-  dead: 0
-  missile: 1
-  targetMoveAway: {fileID: 0}
-  targetMoveToward: {fileID: 0}
-  generalTarget: {fileID: 0}
-  closestNode: {fileID: 0}
-  _aiAnimationScript: {fileID: 0}
-  acceleration: {x: 0, y: 0, z: 0}
-  initialInitialisation: 1
-  debugTarget: {fileID: 0}
-  evadeToogle: 0
-  awayFromPath: 0
-  debugFleeWeight: 0
-  _animator: {fileID: 0}
-  oldPosition: {x: 0, y: 0, z: 0}
 --- !u!114 &6672592589612396026
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -253,3 +222,35 @@ MonoBehaviour:
   OnStatChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &7274426947496876951
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8193644085180237162}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0bd93bc91bdf184bba7d37aae5d3a28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  layer:
+    serializedVersion: 2
+    m_Bits: 0
+--- !u!114 &4582460756794518067
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8193644085180237162}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe309c4116b5e314fb86323d8c6795bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetMoveToward: {fileID: 0}
+  maxSpeed: 10
+  acceleration: {x: 0, y: 0, z: 0}
+  seekScript: {fileID: 0}
+  pursueScript: {fileID: 0}

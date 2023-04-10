@@ -27,7 +27,7 @@ public class selectRandomTarget : MonoBehaviour
     public GameObject returnNewTarget()
     {
         int maxchild = listTarget.Count;
-        int newTargetIndex = Random.Range(0, maxchild);
+        int newTargetIndex = Random.Range(0, maxchild-1);
         return listTarget[newTargetIndex];
     }
 

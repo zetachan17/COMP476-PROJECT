@@ -750,6 +750,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9062107611668498638, guid: 9f4b715e464126a4a81dbe7eb274d1b1, type: 3}
+      propertyPath: OnPowerUpApplied.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 9062107611668498638, guid: 9f4b715e464126a4a81dbe7eb274d1b1, type: 3}
+      propertyPath: OnPowerUpApplied.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1482769450}
+    - target: {fileID: 9062107611668498638, guid: 9f4b715e464126a4a81dbe7eb274d1b1, type: 3}
+      propertyPath: OnPowerUpApplied.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: UpdatePowerUpImage
+      objectReference: {fileID: 0}
+    - target: {fileID: 9062107611668498638, guid: 9f4b715e464126a4a81dbe7eb274d1b1, type: 3}
+      propertyPath: OnPowerUpApplied.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Canvas, Assembly-CSharp
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9f4b715e464126a4a81dbe7eb274d1b1, type: 3}
 --- !u!1 &47909227 stripped
@@ -1700,6 +1716,10 @@ PrefabInstance:
       propertyPath: respownPoint
       value: 
       objectReference: {fileID: 150836920}
+    - target: {fileID: 5136119320113538676, guid: 283aa021142d79e4c98e5e099e25a0df, type: 3}
+      propertyPath: raydistance
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 5136119320113538676, guid: 283aa021142d79e4c98e5e099e25a0df, type: 3}
       propertyPath: newPositionVisualiser
       value: 
@@ -2895,6 +2915,22 @@ PrefabInstance:
     - target: {fileID: 9062107611668498637, guid: 038a6cb23ddccb14bb8dec3550d07baa, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9062107611668498638, guid: 038a6cb23ddccb14bb8dec3550d07baa, type: 3}
+      propertyPath: OnPowerUpApplied.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 9062107611668498638, guid: 038a6cb23ddccb14bb8dec3550d07baa, type: 3}
+      propertyPath: OnPowerUpApplied.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1482769450}
+    - target: {fileID: 9062107611668498638, guid: 038a6cb23ddccb14bb8dec3550d07baa, type: 3}
+      propertyPath: OnPowerUpApplied.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: UpdatePowerUpImage
+      objectReference: {fileID: 0}
+    - target: {fileID: 9062107611668498638, guid: 038a6cb23ddccb14bb8dec3550d07baa, type: 3}
+      propertyPath: OnPowerUpApplied.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Canvas, Assembly-CSharp
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 038a6cb23ddccb14bb8dec3550d07baa, type: 3}
@@ -4605,6 +4641,8 @@ MonoBehaviour:
   targetMoveToward: {fileID: 1861892801}
   generalTarget: {fileID: 0}
   closestNode: {fileID: 0}
+  seekScript: {fileID: 0}
+  pursueScript: {fileID: 0}
   _aiAnimationScript: {fileID: 0}
   acceleration: {x: 0, y: 0, z: 0}
   initialInitialisation: 0
@@ -15539,7 +15577,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Stats:
   - type: 0
-    value: 35
+    value: 25
   - type: 1
     value: 30
   - type: 2
@@ -15792,6 +15830,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 424c4788d39dd6b4294db8ceb5be0313, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1263436684
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1263436609}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08c2dc2e0e4e8734ca91a28e70c2dc6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &1270969865
@@ -16170,7 +16220,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &1299157514
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -16526,6 +16576,26 @@ PrefabInstance:
     - target: {fileID: 9062107611668498637, guid: e741b740226fa8d43b66a41e4df0357d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9062107611668498638, guid: e741b740226fa8d43b66a41e4df0357d, type: 3}
+      propertyPath: OnPowerUpApplied.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 9062107611668498638, guid: e741b740226fa8d43b66a41e4df0357d, type: 3}
+      propertyPath: OnPowerUpApplied.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1482769450}
+    - target: {fileID: 9062107611668498638, guid: e741b740226fa8d43b66a41e4df0357d, type: 3}
+      propertyPath: OnPowerUpApplied.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: UpdatePowerUpImage
+      objectReference: {fileID: 0}
+    - target: {fileID: 9062107611668498638, guid: e741b740226fa8d43b66a41e4df0357d, type: 3}
+      propertyPath: OnPowerUpApplied.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Canvas, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 9062107611668498638, guid: e741b740226fa8d43b66a41e4df0357d, type: 3}
+      propertyPath: OnPowerUpApplied.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e741b740226fa8d43b66a41e4df0357d, type: 3}
@@ -20285,6 +20355,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9062107611668498638, guid: 507093938d1c9dc4f9ae1a35d23bda05, type: 3}
+      propertyPath: OnPowerUpApplied.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 9062107611668498638, guid: 507093938d1c9dc4f9ae1a35d23bda05, type: 3}
+      propertyPath: OnPowerUpApplied.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1482769450}
+    - target: {fileID: 9062107611668498638, guid: 507093938d1c9dc4f9ae1a35d23bda05, type: 3}
+      propertyPath: OnPowerUpApplied.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: UpdatePowerUpImage
+      objectReference: {fileID: 0}
+    - target: {fileID: 9062107611668498638, guid: 507093938d1c9dc4f9ae1a35d23bda05, type: 3}
+      propertyPath: OnPowerUpApplied.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Canvas, Assembly-CSharp
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 507093938d1c9dc4f9ae1a35d23bda05, type: 3}
 --- !u!1 &1662326947 stripped
@@ -22881,6 +22967,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9062107611668498638, guid: 3f6292fb928a05f4cbbd11ca429d2234, type: 3}
+      propertyPath: OnPowerUpApplied.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 9062107611668498638, guid: 3f6292fb928a05f4cbbd11ca429d2234, type: 3}
+      propertyPath: OnPowerUpApplied.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1482769450}
+    - target: {fileID: 9062107611668498638, guid: 3f6292fb928a05f4cbbd11ca429d2234, type: 3}
+      propertyPath: OnPowerUpApplied.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: UpdatePowerUpImage
+      objectReference: {fileID: 0}
+    - target: {fileID: 9062107611668498638, guid: 3f6292fb928a05f4cbbd11ca429d2234, type: 3}
+      propertyPath: OnPowerUpApplied.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Canvas, Assembly-CSharp
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3f6292fb928a05f4cbbd11ca429d2234, type: 3}
 --- !u!1001 &1857813116
@@ -23096,6 +23198,8 @@ MonoBehaviour:
   targetMoveToward: {fileID: 1883382756}
   generalTarget: {fileID: 0}
   closestNode: {fileID: 0}
+  seekScript: {fileID: 0}
+  pursueScript: {fileID: 0}
   _aiAnimationScript: {fileID: 0}
   acceleration: {x: 0, y: 0, z: 0}
   initialInitialisation: 0

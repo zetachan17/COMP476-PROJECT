@@ -33,11 +33,10 @@ public class FireMissile : MonoBehaviour
         }
 
 
-        if (isCircling && canFire && Input.GetKeyUp(KeyCode.Space))
+        if (isCircling && canFire )
         {
               Fire();
-              canFire = false;
-              coroutine = StartCoroutine(Cooldown(cooldownBeforeAfterFire, () => canFire = true));
+             
         }
     }
 
@@ -50,8 +49,8 @@ public class FireMissile : MonoBehaviour
         GameObject tempClosed = null;
         foreach (var target in targets)
         {
-         //   target.transform.parent;
-            if (GetComponent<EntityBehaviour>().teammate.gameObject == target.transform.parent.gameObject) {
+            //   target.transform.parent;
+            if (GetComponent<EntityBehaviour>().teammate.gameObject == target.transform.parent.gameObject || target.transform.parent.gameObject == this.gameObject) {
                 Debug.Log($"{target.name} is a teammate!");
                 continue;
             }
@@ -82,7 +81,9 @@ public class FireMissile : MonoBehaviour
         if (!canFire || closestTarget == null)
             return;
 
-        GameObject missile = Instantiate(missilePrefab, transform.position, Quaternion.identity);
+     //   GameObject missile = Instantiate(missilePrefab, transform.position, Quaternion.identity);
+
+        //missile.GetComponent<moveMissle>().targetMoveToward = closestTarget;
         /*Rigidbody missileRb = missile.GetComponent<Rigidbody>();
 
         if (missileRb != null)
@@ -91,10 +92,12 @@ public class FireMissile : MonoBehaviour
             missileRb.velocity = direction * missileSpeed;
         }*/
 
-        List<GameObject> listToPass = new List<GameObject>();
-        listToPass.Add(closestTarget);
-        missile.GetComponent<strg_steerinAgent>().setSteering(strg_steerinAgent.SteeringOptions.Persue, listToPass);
-        StartCoroutine(Cooldown(missileLifetime, () => Destroy(missile)));
+      //  List<GameObject> listToPass = new List<GameObject>();
+       // listToPass.Add(closestTarget);
+        //missile.GetComponent<strg_steerinAgent>().setSteering(strg_steerinAgent.SteeringOptions.Persue, listToPass);
+        //StartCoroutine(Cooldown(missileLifetime, () => Destroy(missile)));
+        canFire = false;
+        coroutine = StartCoroutine(Cooldown(cooldownBeforeAfterFire, () => canFire = true));
     }
 
     IEnumerator Cooldown(float seconds, Action then)

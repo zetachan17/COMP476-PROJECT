@@ -21,9 +21,9 @@ public class strg_steerinAgent : MonoBehaviour
     public GameObject generalTarget;
     public GameObject closestNode;
 
-    private strg_seek  seekScript;
+    [SerializeField] private strg_seek  seekScript;
     private strg_wander wandeScript;
-    private strg_pursue pursueScript;
+    [SerializeField]private strg_pursue pursueScript;
     private strg_flee fleeScript;
     private strg_evade evadeScript;
     private strg_arrived arrivedScript;
@@ -65,12 +65,17 @@ public class strg_steerinAgent : MonoBehaviour
            
             _aiAnimationScript = GetComponent<aiAnimation>();
         }
+        else
+        {
+            maxSpeed = GetComponent<StatTracked>().GetStat(StatTracked.Stat.MaxSpeed);
+        }
 
 
         if(missile == true)
         {
 
             maxSpeed = GetComponent<StatTracked>().GetStat(StatTracked.Stat.MaxSpeed);
+           
         }
         else
         {
@@ -236,6 +241,7 @@ public class strg_steerinAgent : MonoBehaviour
 
     public void initialiseAgent()
     {
+        
         
         node tempNodeLink = this.gameObject.GetComponent<findClosestNode>().getClosestNode(transform.position);
         closestNode = tempNodeLink.gameObject;
