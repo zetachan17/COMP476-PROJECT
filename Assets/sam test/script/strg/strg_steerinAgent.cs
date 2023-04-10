@@ -11,6 +11,7 @@ public class strg_steerinAgent : MonoBehaviour
     public float speed;
     public float rotationSpeed; //used to control the speed of the lookForward function
     public bool player;
+    public bool dead = false;
 
     public GameObject targetMoveAway;
 
@@ -78,6 +79,7 @@ public class strg_steerinAgent : MonoBehaviour
         {
             initialiseAgent();
         }
+
         checkDistanceFromtarget();
         
         if(player == true)
@@ -107,6 +109,11 @@ public class strg_steerinAgent : MonoBehaviour
 
     public void steeringCalculation()
     {
+
+        if(dead == true)
+        {
+            return;
+        }
         acceleration = Vector3.zero;
 
         if(player == true)

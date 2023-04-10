@@ -47,6 +47,8 @@ public class pathNavigation : MonoBehaviour
             //No need to change the target node
         }
     }
+
+
     /// <summary>
     /// Function called when we want the ai to go back to navigating using the node list
     /// </summary>
