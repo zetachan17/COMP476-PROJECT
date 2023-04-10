@@ -751,6 +751,14 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9062107611668498638, guid: 9f4b715e464126a4a81dbe7eb274d1b1, type: 3}
+      propertyPath: audioSource
+      value: 
+      objectReference: {fileID: 1089191096}
+    - target: {fileID: 9062107611668498638, guid: 9f4b715e464126a4a81dbe7eb274d1b1, type: 3}
+      propertyPath: powerUpClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 6cf9c85b5a3b88c468b21b9d21250adf, type: 3}
+    - target: {fileID: 9062107611668498638, guid: 9f4b715e464126a4a81dbe7eb274d1b1, type: 3}
       propertyPath: OnPowerUpApplied.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 3
       objectReference: {fileID: 0}
@@ -3044,6 +3052,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9062107611668498638, guid: 038a6cb23ddccb14bb8dec3550d07baa, type: 3}
+      propertyPath: audioSource
+      value: 
+      objectReference: {fileID: 1089191096}
+    - target: {fileID: 9062107611668498638, guid: 038a6cb23ddccb14bb8dec3550d07baa, type: 3}
+      propertyPath: powerUpClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 6cf9c85b5a3b88c468b21b9d21250adf, type: 3}
     - target: {fileID: 9062107611668498638, guid: 038a6cb23ddccb14bb8dec3550d07baa, type: 3}
       propertyPath: OnPowerUpApplied.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 3
@@ -16871,6 +16887,14 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9062107611668498638, guid: e741b740226fa8d43b66a41e4df0357d, type: 3}
+      propertyPath: audioSource
+      value: 
+      objectReference: {fileID: 1089191096}
+    - target: {fileID: 9062107611668498638, guid: e741b740226fa8d43b66a41e4df0357d, type: 3}
+      propertyPath: powerUpClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 6cf9c85b5a3b88c468b21b9d21250adf, type: 3}
+    - target: {fileID: 9062107611668498638, guid: e741b740226fa8d43b66a41e4df0357d, type: 3}
       propertyPath: OnPowerUpApplied.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 3
       objectReference: {fileID: 0}
@@ -20649,6 +20673,14 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9062107611668498638, guid: 507093938d1c9dc4f9ae1a35d23bda05, type: 3}
+      propertyPath: audioSource
+      value: 
+      objectReference: {fileID: 1089191096}
+    - target: {fileID: 9062107611668498638, guid: 507093938d1c9dc4f9ae1a35d23bda05, type: 3}
+      propertyPath: powerUpClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 6cf9c85b5a3b88c468b21b9d21250adf, type: 3}
+    - target: {fileID: 9062107611668498638, guid: 507093938d1c9dc4f9ae1a35d23bda05, type: 3}
       propertyPath: OnPowerUpApplied.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 3
       objectReference: {fileID: 0}
@@ -23260,6 +23292,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9062107611668498638, guid: 3f6292fb928a05f4cbbd11ca429d2234, type: 3}
+      propertyPath: audioSource
+      value: 
+      objectReference: {fileID: 1089191096}
+    - target: {fileID: 9062107611668498638, guid: 3f6292fb928a05f4cbbd11ca429d2234, type: 3}
+      propertyPath: powerUpClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 6cf9c85b5a3b88c468b21b9d21250adf, type: 3}
     - target: {fileID: 9062107611668498638, guid: 3f6292fb928a05f4cbbd11ca429d2234, type: 3}
       propertyPath: OnPowerUpApplied.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 3
