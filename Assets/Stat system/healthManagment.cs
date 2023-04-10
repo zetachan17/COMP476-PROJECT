@@ -24,9 +24,12 @@ public class healthManagment : MonoBehaviour
         currentHealth = GetComponent<StatTracked>().GetStat(StatTracked.Stat.Hp);
         stat = GetComponent<StatTracked>();
         
-        _healthBarSlider = healthBar.GetComponent<Slider>();
-        _healthBarFill = healthBar.GetComponentInChildren<HealthBar>().fill;
-        _healthBarGradient = healthBar.GetComponent<HealthBar>().gradient;
+        if(this.GetComponent<strg_steerinAgent>().player == true)
+        {
+            _healthBarSlider = healthBar.GetComponent<Slider>();
+            _healthBarFill = healthBar.GetComponentInChildren<HealthBar>().fill;
+            _healthBarGradient = healthBar.GetComponent<HealthBar>().gradient;
+        }
     }
 
 
@@ -59,7 +62,7 @@ public class healthManagment : MonoBehaviour
     private void Update()
     {
         //Debug.Log("Current Health: " + currentHealth);
-        Debug.Log( gameObject.name + "maxHealth: " + maxHealth + " currentHealth: " + currentHealth);
+       // Debug.Log( gameObject.name + "maxHealth: " + maxHealth + " currentHealth: " + currentHealth);
     }
 
     public void checkIfDead(GameObject enemy)
@@ -67,17 +70,30 @@ public class healthManagment : MonoBehaviour
         if(currentHealth <= 0)
         {
             Debug.Log("This player is dead");
-            enemy.GetComponent<individualScore>().getKill();
+            if(enemy != null)
+            {
+
+                enemy.GetComponent<individualScore>().getKill();
+            }
             GetComponent<deathManagment>().getkilled();
         }
+    }
+
+    public void resetHealth()
+    {
+        changeHP(maxHealth, null);
     }
 
     public void updateUI()
     {
         //TO-Do update the UI
-        _healthBarSlider.maxValue = maxHealth;
-        _healthBarSlider.value = currentHealth;
-        _healthBarFill.color = _healthBarGradient.Evaluate(_healthBarSlider.normalizedValue);
+
+        if (GetComponent<strg_steerinAgent>().player == true)
+        {
+            _healthBarSlider.maxValue = maxHealth;
+            _healthBarSlider.value = currentHealth;
+            _healthBarFill.color = _healthBarGradient.Evaluate(_healthBarSlider.normalizedValue);
+        }
     }
 
     public void OnStatChange(StatTracked.Stat stat, float oldValue, float newValue)

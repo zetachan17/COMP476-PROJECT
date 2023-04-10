@@ -6,11 +6,13 @@ public class deathManagment : MonoBehaviour
 {
     public Camera deathCam;
     public GameObject respownPoint;
+
+    private Quaternion originalRotation;
     // Start is called before the first frame update
     void Start()
     {
         deathCam = GameObject.Find("deathCam").GetComponent<Camera>();
-        
+        originalRotation = this.transform.rotation;
     }
 
     // Update is called once per frame
@@ -21,18 +23,21 @@ public class deathManagment : MonoBehaviour
 
     public void getkilled()
     {
+        Debug.Log("in get killed");
         if(gameObject.GetComponent<strg_steerinAgent>().player == true)
         {
-            Camera mainCamera = Camera.main;
 
+            Debug.Log("player got killed");
+            Camera mainCamera = Camera.main;
+ /*
             deathCam.transform.position = mainCamera.transform.position;
             deathCam.transform.rotation = mainCamera.transform.rotation;
 
             mainCamera.enabled = false;
-            deathCam.enabled = true;
+            deathCam.enabled = true;*/
         }
 
-        this.gameObject.SetActive(false);
+        disablePlayer();
         GetComponent<individualScore>().getDeath();
         //start explosion particle
         StartCoroutine(Wait());
@@ -42,11 +47,28 @@ public class deathManagment : MonoBehaviour
 
     private IEnumerator Wait()
     {
+        Debug.Log("Before wait");
         yield return new WaitForSeconds(4);
-        this.transform.position = respownPoint.transform.position;
-        Camera.main.enabled = true;
-        this.gameObject.SetActive(true);
-        this.gameObject.GetComponent<strg_steerinAgent>().initialiseAgent();
+        Debug.Log("After the wait");
+        enablePlayer();
 
+
+
+    }
+
+    public void disablePlayer()
+    {
+        this.gameObject.GetComponent<strg_steerinAgent>().enabled = false;
+        gameObject.transform.GetChild(0).GetComponent<MeshRenderer>().enabled = false;
+    }
+
+    public void enablePlayer()
+    {
+        GetComponent<healthManagment>().resetHealth();
+        this.transform.rotation = originalRotation;
+        this.transform.position = respownPoint.transform.position;
+        gameObject.transform.GetChild(0).GetComponent<MeshRenderer>().enabled = true;
+        this.gameObject.GetComponent<strg_steerinAgent>().enabled = true;
+        this.gameObject.GetComponent<strg_steerinAgent>().initialiseAgent();
     }
 }

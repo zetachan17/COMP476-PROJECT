@@ -18,7 +18,8 @@ public class collisionWIthWall : MonoBehaviour
         if (Physics.SphereCast(transform.position, 0.5f, -transform.up, out hit,  0.25f, layer))
         {
             Debug.Log(hit.transform.tag);
-            GetComponent<healthManagment>().setHptoZero(null);
+            
+            GetComponent<healthManagment>().setHptoZero(GameObject.Find("wallScore"));
         }
        
     }

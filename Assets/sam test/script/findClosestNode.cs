@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class findClosestNode : MonoBehaviour
 {
-    public static List<node> listOfNode  ;
+    public List<node> listOfNode;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,11 +17,12 @@ public class findClosestNode : MonoBehaviour
         
     }
 
-    public static node getClosestNode(Vector3 agentPosition)
+    public  node getClosestNode(Vector3 agentPosition)
     {
 
+       
         listOfNode = GameObject.Find("nodeList").GetComponent<nodeSelection>().getListNode();
-
+        
         float currentDistance = float.MaxValue;
         node closestNode = null;
 
@@ -29,17 +30,20 @@ public class findClosestNode : MonoBehaviour
 
         // This would cast rays only against colliders in layer 8.
         // But instead we want to collide against everything except layer 8. The ~ operator does this, it inverts a bitmask.
-        layerMask = ~layerMask;
+        //layerMask = ~layerMask;
         foreach (node n in listOfNode)
         {
 
+           
             RaycastHit hit;
             if (Physics.Raycast(agentPosition, n.transform.position - agentPosition, out hit, Mathf.Infinity, layerMask))
             {
-                if (hit.collider.gameObject.GetComponentInParent<node>() != null)
+                if (hit.collider.gameObject.GetComponent<node>() != null)
                 {
+                    
                     if (Vector3.Distance(agentPosition, n.transform.position) < currentDistance)
                     {
+
                         closestNode = n;
                         currentDistance = Vector3.Distance(agentPosition, n.transform.position);
                     }
@@ -48,7 +52,7 @@ public class findClosestNode : MonoBehaviour
 
 
         }
-        Debug.Log("potato");
+       
         return closestNode;
     }
 }

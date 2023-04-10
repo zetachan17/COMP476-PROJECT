@@ -25,11 +25,13 @@ public class strg_steerinAgent : MonoBehaviour
     private strg_evade evadeScript;
     private strg_arrived arrivedScript;
 
-    private aiAnimation _aiAnimationScript;
+    public aiAnimation _aiAnimationScript;
     private collisionRayCast collisionDetection;
 
     public Vector3 acceleration = Vector3.zero;
     private float rotationValue = 0.0f;
+
+    public bool initialInitialisation = false;
     
 
 
@@ -54,22 +56,34 @@ public class strg_steerinAgent : MonoBehaviour
         fleeScript = GetComponent<strg_flee>();
         evadeScript = GetComponent<strg_evade>();
         arrivedScript = GetComponent<strg_arrived>();
-        initialiseAgent();
 
-        if(player == false)
+        if (player == false)
         {
+           
             _aiAnimationScript = GetComponent<aiAnimation>();
         }
 
+
+
+        initialiseAgent();
+
+       
 
     }
 
     // Update is called once per frame
     void Update()
     {
-       checkDistanceFromtarget();
+        if(initialInitialisation == false)
+        {
+            initialiseAgent();
+        }
+        checkDistanceFromtarget();
         
-        steeringCalculation();
+        if(player == true)
+        {
+            steeringCalculation();
+        }
 
         if (Input.GetKey(KeyCode.C))
         {
@@ -192,7 +206,14 @@ public class strg_steerinAgent : MonoBehaviour
 
     public void initialiseAgent()
     {
-        closestNode = findClosestNode.getClosestNode(transform.position).gameObject;
+        
+        node tempNodeLink = this.gameObject.GetComponent<findClosestNode>().getClosestNode(transform.position);
+        closestNode = tempNodeLink.gameObject;
+        if(closestNode != null)
+        {
+            initialInitialisation = true;
+        }
+        
         GetComponent<pathNavigation>().nodeCheck();
         maxSpeed = GetComponent<StatTracked>().GetStat(StatTracked.Stat.MaxSpeed);
     }
@@ -234,7 +255,7 @@ public class strg_steerinAgent : MonoBehaviour
                 if (awayFromPath)
                 {
                     awayFromPath = false;
-                    closestNode = closestNode = closestNode = findClosestNode.getClosestNode(transform.position).gameObject;
+                    closestNode = GetComponent<findClosestNode>().getClosestNode(transform.position).gameObject;
                     GetComponent<pathNavigation>().findPathToTarget(closestNode, generalTarget);
                 }
                 steeringCalculation();
