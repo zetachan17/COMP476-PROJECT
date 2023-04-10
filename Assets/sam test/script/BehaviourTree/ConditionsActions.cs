@@ -383,6 +383,8 @@ namespace BT {
             heavyHitterehaviour.GetComponent<strg_steerinAgent>().setSteering(
                       strg_steerinAgent.SteeringOptions.Persue, new() { enemy });
 
+            heavyHitterehaviour.GetComponent<FireMissile>().Fire();
+
             return NodeState.SUCCESS;
         }
     }
