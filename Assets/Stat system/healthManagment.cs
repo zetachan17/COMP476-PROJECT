@@ -30,7 +30,7 @@ public class healthManagment : MonoBehaviour
     }
 
 
-    public void changeHP(float amount)
+    public void changeHP(float amount, GameObject enemy)
     {
         if(currentHealth + amount <= maxHealth)
         {
@@ -42,10 +42,13 @@ public class healthManagment : MonoBehaviour
             stat.SetStat(StatTracked.Stat.Hp, modification);
         }
 
-        checkIfDead();
+        checkIfDead(enemy);
         updateUI();
     }
-
+    public void setHptoZero(GameObject killer)
+    {
+        changeHP(currentHealth * -1, killer);
+    }
     public void ChangeMaxHP(float amount)
     {
         //stat.SetStat(StatTracked.Stat.MaxHp, amount);
@@ -59,11 +62,13 @@ public class healthManagment : MonoBehaviour
         Debug.Log( gameObject.name + "maxHealth: " + maxHealth + " currentHealth: " + currentHealth);
     }
 
-    public void checkIfDead()
+    public void checkIfDead(GameObject enemy)
     {
         if(currentHealth <= 0)
         {
             Debug.Log("This player is dead");
+            enemy.GetComponent<individualScore>().getKill();
+            GetComponent<deathManagment>().getkilled();
         }
     }
 
