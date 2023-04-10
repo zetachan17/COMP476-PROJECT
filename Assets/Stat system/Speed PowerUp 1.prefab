@@ -62,7 +62,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   modifies: 0
-  newValue: 40
+  newValue: 4
   duration: 2
   OnPowerUpApplied:
     m_PersistentCalls:
