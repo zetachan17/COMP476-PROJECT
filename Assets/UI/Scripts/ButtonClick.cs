@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 public class ButtonClick : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
@@ -25,6 +26,7 @@ public class ButtonClick : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     
     public void WasClicked()
     {
-        Debug.Log("Button was clicked");
+        // switch to next scene
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);    
     }
 }

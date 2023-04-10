@@ -4,5 +4,11 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: 0bcd9692247521143806c237185a0236
+  - enabled: 1
+    path: Assets/Scenes/beeLand.unity
+    guid: c90d9b6b6a4af504ea2be0ddfad1abd1
   m_configObjects: {}
