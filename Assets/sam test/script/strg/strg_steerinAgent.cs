@@ -13,6 +13,8 @@ public class strg_steerinAgent : MonoBehaviour
     public bool player;
     public bool dead = false;
 
+    public bool missile;
+
     public GameObject targetMoveAway;
 
     public GameObject targetMoveToward;
@@ -65,8 +67,16 @@ public class strg_steerinAgent : MonoBehaviour
         }
 
 
+        if(missile == true)
+        {
 
-        initialiseAgent();
+            maxSpeed = GetComponent<StatTracked>().GetStat(StatTracked.Stat.MaxSpeed);
+        }
+        else
+        {
+
+            initialiseAgent();
+        }
 
        
 
@@ -80,12 +90,18 @@ public class strg_steerinAgent : MonoBehaviour
             initialiseAgent();
         }
 
-        checkDistanceFromtarget();
+        if(missile == false)
+        {
+         checkDistanceFromtarget();
+        }
+      
         
         if(player == true)
         {
             steeringCalculation();
         }
+
+
 
         if (Input.GetKey(KeyCode.C))
         {
@@ -115,6 +131,12 @@ public class strg_steerinAgent : MonoBehaviour
             return;
         }
         acceleration = Vector3.zero;
+
+
+        if(missile == true)
+        {
+            acceleration += pursueScript.getSteering(2, this);
+        }
 
         if(player == true)
         {
@@ -151,7 +173,7 @@ public class strg_steerinAgent : MonoBehaviour
         }
 
 
-        if(player == false)
+        if(player == false || missile == false)
         {
             Vector3[] wallToDoge = collisionDetection.vissionDetection();
             Vector3 tempAcc = Vector3.zero;
@@ -178,7 +200,7 @@ public class strg_steerinAgent : MonoBehaviour
         Velocity = Vector3.ClampMagnitude(Velocity, maxSpeed);
 
 
-        if (player == false)
+        if (player == false || missile == false)
         {
             
             //Debug.Log((Velocity- oldVelocity) + "Acceleration");
