@@ -20,6 +20,7 @@ GameObject:
   - component: {fileID: 917167559706195556}
   - component: {fileID: 6055007289373637317}
   - component: {fileID: 6672592589612396026}
+  - component: {fileID: 1231392857417860641}
   m_Layer: 0
   m_Name: Missile
   m_TagString: Untagged
@@ -202,11 +203,15 @@ MonoBehaviour:
   speed: 0
   rotationSpeed: 10
   player: 0
+  dead: 0
+  missile: 0
   targetMoveAway: {fileID: 0}
   targetMoveToward: {fileID: 0}
   generalTarget: {fileID: 0}
   closestNode: {fileID: 0}
+  _aiAnimationScript: {fileID: 0}
   acceleration: {x: 0, y: 0, z: 0}
+  initialInitialisation: 0
   debugTarget: {fileID: 0}
   evadeToogle: 0
   awayFromPath: 0
@@ -228,3 +233,23 @@ MonoBehaviour:
   wanderTimer: 0
   wanderInterval: 0
   wanderDegreesDelta: 0
+--- !u!114 &1231392857417860641
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8193644085180237162}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df1e6fea283f46b4b9306dc325471c6f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Stats:
+  - type: 0
+    value: 10
+  - type: 1
+    value: 10
+  OnStatChanged:
+    m_PersistentCalls:
+      m_Calls: []

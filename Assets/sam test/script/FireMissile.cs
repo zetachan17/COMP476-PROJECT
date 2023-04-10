@@ -9,7 +9,6 @@ public class FireMissile : MonoBehaviour
     public GameObject missilePrefab;
     public float missileRange = 25f;
     public float cooldownBeforeAfterFire = 5f;
-    public float missileSpeed = 10f;
     public LayerMask validTargets;
     public float missileLifetime = 10.0f;
 
@@ -49,6 +48,14 @@ public class FireMissile : MonoBehaviour
         GameObject tempClosed = null;
         foreach (var target in targets)
         {
+            // If it is a AI
+            if (target.GetComponent<EntityBehaviour>() != null) {
+                // Then check if it is this object's teammate
+                if (target.GetComponent<EntityBehaviour>().teammate == this.gameObject) { 
+                    continue;
+                }    
+            }
+
             float distance = Vector3.Distance(transform.position, target.transform.position);
 
             if (distance < closestDistance)
@@ -90,7 +97,6 @@ public class FireMissile : MonoBehaviour
 
     IEnumerator Cooldown(float seconds, Action then)
     {
-        Debug.Log("CAlled");
         yield return new WaitForSeconds(seconds);
         then();
     }
