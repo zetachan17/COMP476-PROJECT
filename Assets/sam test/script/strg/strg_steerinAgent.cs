@@ -85,7 +85,8 @@ public class strg_steerinAgent : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(initialInitialisation == false)
+        GetComponent<collisionWIthWall>().sphereCheckGround(oldPosition);
+        if (initialInitialisation == false)
         {
             initialiseAgent();
         }
@@ -173,7 +174,7 @@ public class strg_steerinAgent : MonoBehaviour
         }
 
 
-        if(player == false || missile == false)
+        if(player == false && missile == false)
         {
             Vector3[] wallToDoge = collisionDetection.vissionDetection();
             Vector3 tempAcc = Vector3.zero;
@@ -216,7 +217,7 @@ public class strg_steerinAgent : MonoBehaviour
         this.transform.position += Velocity * Time.deltaTime;
         this.transform.rotation = faceForward(this);
         this.transform.Rotate(0.0f,0.0f, rotationValue * rotationSpeed * Time.deltaTime, Space.Self);
-        GetComponent<collisionWIthWall>().sphereCheckGround(oldPosition);
+        
         speed = (Vector3.Distance(oldPosition, this.transform.position) / Time.deltaTime);
         speed = Mathf.Round(speed * 10.0f) * 0.1f;
        
