@@ -85,7 +85,7 @@ public class strg_steerinAgent : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        GetComponent<collisionWIthWall>().sphereCheckGround(oldPosition);
+       
         if (initialInitialisation == false)
         {
             initialiseAgent();
@@ -217,7 +217,7 @@ public class strg_steerinAgent : MonoBehaviour
         this.transform.position += Velocity * Time.deltaTime;
         this.transform.rotation = faceForward(this);
         this.transform.Rotate(0.0f,0.0f, rotationValue * rotationSpeed * Time.deltaTime, Space.Self);
-        
+        GetComponent<collisionWIthWall>().sphereCheckGround(oldPosition);
         speed = (Vector3.Distance(oldPosition, this.transform.position) / Time.deltaTime);
         speed = Mathf.Round(speed * 10.0f) * 0.1f;
        
@@ -245,6 +245,7 @@ public class strg_steerinAgent : MonoBehaviour
         }
         
         GetComponent<pathNavigation>().nodeCheck();
+        
         maxSpeed = GetComponent<StatTracked>().GetStat(StatTracked.Stat.MaxSpeed);
     }
 

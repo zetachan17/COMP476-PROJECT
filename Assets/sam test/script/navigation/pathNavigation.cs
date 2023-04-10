@@ -31,6 +31,7 @@ public class pathNavigation : MonoBehaviour
             {
                 // get an new target node
                 node finalDestination = GameObject.Find("nodeList").GetComponent<nodeSelection>().getRandomNode();
+                gameObject.GetComponent<strg_steerinAgent>().generalTarget = finalDestination.gameObject;
                 pathOfNode = GameObject.Find("nodeList").GetComponent<pathFinding>().findPath( targetNode, finalDestination, new List<node>());
             }
             else

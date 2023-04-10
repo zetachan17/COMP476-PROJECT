@@ -32,6 +32,7 @@ public class FireMissile : MonoBehaviour
             isCircling = false;
         }
 
+
         if (isCircling && canFire && Input.GetKeyUp(KeyCode.Space))
         {
               Fire();
@@ -49,7 +50,8 @@ public class FireMissile : MonoBehaviour
         GameObject tempClosed = null;
         foreach (var target in targets)
         {
-            if (GetComponent<EntityBehaviour>().teammate.gameObject == target.gameObject) {
+         //   target.transform.parent;
+            if (GetComponent<EntityBehaviour>().teammate.gameObject == target.transform.parent.gameObject) {
                 Debug.Log($"{target.name} is a teammate!");
                 continue;
             }
@@ -61,7 +63,7 @@ public class FireMissile : MonoBehaviour
                 closestDistance = distance;
 
                 // Check if the closest has changed
-                tempClosed = target.gameObject;            
+                tempClosed = target.transform.parent.gameObject;            
             }
         }
 
@@ -89,7 +91,9 @@ public class FireMissile : MonoBehaviour
             missileRb.velocity = direction * missileSpeed;
         }*/
 
-        missile.GetComponent<strg_steerinAgent>().setSteering(strg_steerinAgent.SteeringOptions.Persue, new() { closestTarget });
+        List<GameObject> listToPass = new List<GameObject>();
+        listToPass.Add(closestTarget);
+        missile.GetComponent<strg_steerinAgent>().setSteering(strg_steerinAgent.SteeringOptions.Persue, listToPass);
         StartCoroutine(Cooldown(missileLifetime, () => Destroy(missile)));
     }
 
