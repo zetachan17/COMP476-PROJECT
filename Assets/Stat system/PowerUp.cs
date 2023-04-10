@@ -22,6 +22,9 @@ public class PowerUp : MonoBehaviour
     
     [SerializeField] private float timeToDestroy;
     
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip powerUpClip;
+    
     private void Update()
     {
        // SelfDestroy();
@@ -47,6 +50,7 @@ public class PowerUp : MonoBehaviour
         if (tracker != null)
         {
             Apply(tracker);
+            audioSource.PlayOneShot(powerUpClip);
             Destroy(gameObject);
         }
     }
