@@ -15873,6 +15873,10 @@ MonoBehaviour:
     value: 100
   - type: 3
     value: 100
+  - type: 4
+    value: 10
+  - type: 6
+    value: 10
   OnStatChanged:
     m_PersistentCalls:
       m_Calls:
