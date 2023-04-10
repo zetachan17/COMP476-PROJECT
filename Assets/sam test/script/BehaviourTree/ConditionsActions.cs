@@ -38,20 +38,18 @@ namespace BT {
                         {
                             // This object is in the Field of View
                             objectsInSight.Add(obj.gameObject);
-                            Debug.Log($"[{GetType().Name}]: {obj.name} is in the FOV.");
+                            //Debug.Log($"[{GetType().Name}]: {obj.name} is in the FOV.");
                         }
                     }
                 }
             }
 
+            scoutBahaviour.SetData("objects_in_sight", objectsInSight);
             if (objectsInSight.Count > 0)
             {
-                // Set data
-                SetData("objects_in_sight", objectsInSight);
                 return NodeState.SUCCESS;
             }
             else {
-                SetData("objects_in_sight", objectsInSight);
                 return NodeState.FAILURE;
             }
         }
@@ -69,13 +67,13 @@ namespace BT {
         public override NodeState Evaluate()
         {
             // Get object from data
-            List<GameObject> objs = GetData<List<GameObject>>("objects_in_sight");
+            List<GameObject> objs = scoutBahaviour.GetData<List<GameObject>>("objects_in_sight");
             //Assert.IsNotNull(objs);
 
             foreach (var o in objs)
             {
                 if (o.tag == "powerup") {
-                    SetData("to_seek", o);
+                    scoutBahaviour.SetData("to_seek", o);
                     return NodeState.SUCCESS;
                 }
             }
@@ -94,7 +92,7 @@ namespace BT {
 
         public override NodeState Evaluate()
         {
-            GameObject powerup = GetData<GameObject>("to_seek");
+            GameObject powerup = scoutBahaviour.GetData<GameObject>("to_seek");
             //Assert.IsNotNull(powerup);
             //Assert.IsNotNull(powerup.GetComponent<PowerUp>(), "Powerup taged objects must have PowerUp.cs Component");
 
@@ -113,7 +111,7 @@ namespace BT {
 
         public override NodeState Evaluate()
         {
-            GameObject to_seek = GetData<GameObject>("to_seek");
+            GameObject to_seek = bahaviour.GetData<GameObject>("to_seek");
             //Assert.IsNotNull(to_seek);
 
             // TODO: This returns a Vector3, but we need to set the velocity of the agent
@@ -136,7 +134,7 @@ namespace BT {
 
         public override NodeState Evaluate()
         {
-            GameObject powerup = GetData<GameObject>("to_seek");
+            GameObject powerup = scoutBahaviour.GetData<GameObject>("to_seek");
             //Assert.IsNotNull(powerup);
             //Assert.IsNotNull(powerup.GetComponent<PowerUp>(), "Powerup taged objects must have PowerUp.cs Component");
 
@@ -174,7 +172,7 @@ namespace BT {
 
         public override NodeState Evaluate()
         {
-            GameObject powerup = GetData<GameObject>("to_seek");
+            GameObject powerup = scoutBahaviour.GetData<GameObject>("to_seek");
             //Assert.IsNotNull(powerup);
             scoutBahaviour.teammate.preferedTarget = powerup;
             return NodeState.SUCCESS;
@@ -192,7 +190,7 @@ namespace BT {
 
         public override NodeState Evaluate()
         {
-            GameObject powerup = GetData<GameObject>("to_seek");
+            GameObject powerup = scoutBahaviour.GetData<GameObject>("to_seek");
             //Assert.IsNotNull(powerup);
 
             // TODO: This returns a vector3 but we need to set the velocity of the agent
@@ -217,14 +215,14 @@ namespace BT {
         public override NodeState Evaluate()
         {
             // Get object from data
-            List<GameObject> objs = GetData<List<GameObject>>("objects_in_sight");
+            List<GameObject> objs = scoutBahaviour.GetData<List<GameObject>>("objects_in_sight");
             //Assert.IsNotNull(objs);
 
             foreach (var o in objs)
             {
                 if ((o.tag == "player" || o.tag == "ai") && o != scoutBahaviour.teammate)
                 {
-                    SetData("to_seek", o);
+                    scoutBahaviour.SetData("to_seek", o);
                     return NodeState.SUCCESS;
                 }
             }
@@ -243,7 +241,7 @@ namespace BT {
 
         public override NodeState Evaluate()
         {
-            GameObject enemy = GetData<GameObject>("to_seek");
+            GameObject enemy = scoutBahaviour.GetData<GameObject>("to_seek");
             //Assert.IsNotNull(enemy);
 
             scoutBahaviour.GetComponent<strg_steerinAgent>().setSteering(
@@ -266,14 +264,14 @@ namespace BT {
         public override NodeState Evaluate()
         {
             // Get object from data
-            List<GameObject> objs = GetData<List<GameObject>>("objects_in_sight");
+            List<GameObject> objs = scoutBahaviour.GetData<List<GameObject>>("objects_in_sight");
             //Assert.IsNotNull(objs);
 
             foreach (var o in objs)
             {
                 if (o.tag == "stat")
                 {
-                    SetData("to_seek", o);
+                    scoutBahaviour.SetData("to_seek", o);
                     return NodeState.SUCCESS;
                 }
             }
@@ -293,14 +291,14 @@ namespace BT {
         public override NodeState Evaluate()
         {
             // Get object from data
-            List<GameObject> objs = GetData<List<GameObject>>("objects_in_sight");
+            List<GameObject> objs = scoutBahaviour.GetData<List<GameObject>>("objects_in_sight");
             //Assert.IsNotNull(objs);
 
             foreach (var o in objs)
             {
                 if (o.tag == "obstacle")
                 {
-                    SetData("to_seek", o);
+                    scoutBahaviour.SetData("to_seek", o);
                     return NodeState.SUCCESS;
                 }
             }
@@ -319,7 +317,7 @@ namespace BT {
         public override NodeState Evaluate()
         {
             // Get object from data
-            List<GameObject> objs = GetData<List<GameObject>>("objects_in_sight");
+            List<GameObject> objs = scoutBahaviour.GetData<List<GameObject>>("objects_in_sight");
             //Assert.IsNotNull(objs);
 
             objs.Sort((a, b) => 
@@ -328,7 +326,7 @@ namespace BT {
                     Vector3.Distance(b.transform.position, scoutBahaviour.transform.position))
                 );
 
-            SetData("to_seek", objs[0]);
+            scoutBahaviour.SetData("to_seek", objs[0]);
 
             return NodeState.SUCCESS;
         }
@@ -349,14 +347,14 @@ namespace BT {
                 return NodeState.FAILURE;
 
 
-            List<GameObject> objs = GetData<List<GameObject>>("objects_in_sight");
+            List<GameObject> objs = heavyHitterehaviour.GetData<List<GameObject>>("objects_in_sight");
             //Assert.IsNotNull(objs);
 
             foreach (GameObject obj in objs)
             {
                 if (obj == heavyHitterehaviour.preferedTarget)
                 {
-                    SetData("to_seek", obj);
+                    heavyHitterehaviour.SetData("to_seek", obj);
                     return NodeState.SUCCESS;
                 }
             }
@@ -376,7 +374,7 @@ namespace BT {
 
         public override NodeState Evaluate()
         {
-            GameObject enemy = GetData<GameObject>("to_seek");
+            GameObject enemy = heavyHitterehaviour.GetData<GameObject>("to_seek");
             //Assert.IsNotNull(enemy);
 
             // This returns a vector3 but we need to set the velocity of the agent

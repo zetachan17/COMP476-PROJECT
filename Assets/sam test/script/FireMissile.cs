@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
 
+[RequireComponent(typeof(EntityBehaviour))]
 public class FireMissile : MonoBehaviour
 {
     public GameObject missilePrefab;
@@ -48,12 +49,9 @@ public class FireMissile : MonoBehaviour
         GameObject tempClosed = null;
         foreach (var target in targets)
         {
-            // If it is a AI
-            if (target.GetComponent<EntityBehaviour>() != null) {
-                // Then check if it is this object's teammate
-                if (target.GetComponent<EntityBehaviour>().teammate == this.gameObject) { 
-                    continue;
-                }    
+            if (GetComponent<EntityBehaviour>().teammate.gameObject == target.gameObject) {
+                Debug.Log($"{target.name} is a teammate!");
+                continue;
             }
 
             float distance = Vector3.Distance(transform.position, target.transform.position);
