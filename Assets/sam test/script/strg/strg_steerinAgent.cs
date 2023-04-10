@@ -200,7 +200,7 @@ public class strg_steerinAgent : MonoBehaviour
         Velocity = Vector3.ClampMagnitude(Velocity, maxSpeed);
 
 
-        if (player == false || missile == false)
+        if (player == false && missile == false)
         {
             
             //Debug.Log((Velocity- oldVelocity) + "Acceleration");

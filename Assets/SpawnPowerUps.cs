@@ -11,6 +11,17 @@ public class SpawnPowerUps : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        InvokeRepeating("creatPowerUp", 2.0f, 15.0f);
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+
+    void creatPowerUp()
+    {
         for (int i = 0; i < spawnPositionList.Count; i++)
         {
             float x = Random.Range(-10, 10);
@@ -19,14 +30,9 @@ public class SpawnPowerUps : MonoBehaviour
             Vector3 nodePosition = spawnPositionList[i].position;
             Vector3 spawnPosition = new Vector3(x + nodePosition.x, y + nodePosition.y, z + nodePosition.z);
             int numOfPowerUps = powerUpList.Count;
-            
-            Instantiate(powerUpList[i % numOfPowerUps], spawnPosition, Quaternion.identity);
-        }
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+           GameObject newPowerUp = Instantiate(powerUpList[Random.Range(0, numOfPowerUps-1)], spawnPosition, Quaternion.identity);
+            newPowerUp.GetComponent<PowerUp>().SelfDestroy();
+        }
     }
 }

@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-public abstract class EntityBehaviour : BT.Tree
+public  class EntityBehaviour : BT.Tree
 {
     public LayerMask objectsToDetect;
     public EntityBehaviour teammate;

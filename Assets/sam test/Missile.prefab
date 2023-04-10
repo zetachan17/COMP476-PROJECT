@@ -204,7 +204,7 @@ MonoBehaviour:
   rotationSpeed: 10
   player: 0
   dead: 0
-  missile: 0
+  missile: 1
   targetMoveAway: {fileID: 0}
   targetMoveToward: {fileID: 0}
   generalTarget: {fileID: 0}

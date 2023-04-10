@@ -496,7 +496,7 @@ MonoBehaviour:
       children: []
   objectsToDetect:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 768
   teammate: {fileID: 0}
   preferedTarget: {fileID: 0}
 --- !u!114 &8686332822709207473

@@ -4480,6 +4480,7 @@ MonoBehaviour:
   rotationSpeed: 0
   player: 0
   dead: 0
+  missile: 0
   targetMoveAway: {fileID: 0}
   targetMoveToward: {fileID: 1861892801}
   generalTarget: {fileID: 0}
@@ -15572,6 +15573,17 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1263436669 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4554895117600497487, guid: a99ed8feb20f5244e910811fc9f8238d, type: 3}
+  m_PrefabInstance: {fileID: 1837181991}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1263436609}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83306e162acd34a4b8ac8cd2f316e2e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1270969865
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18448,7 +18460,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 176951059046592665, guid: eb2234ef66380414983b2c254e39e70a, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 176951059046592668, guid: eb2234ef66380414983b2c254e39e70a, type: 3}
       propertyPath: agent
@@ -18538,13 +18550,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1359075976712956446, guid: eb2234ef66380414983b2c254e39e70a, type: 3}
+      propertyPath: fireMissile
+      value: 
+      objectReference: {fileID: 1263436669}
     - target: {fileID: 1869505986926487349, guid: eb2234ef66380414983b2c254e39e70a, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1869505986926487349, guid: eb2234ef66380414983b2c254e39e70a, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eb2234ef66380414983b2c254e39e70a, type: 3}
@@ -22670,6 +22686,7 @@ MonoBehaviour:
   rotationSpeed: 0
   player: 0
   dead: 0
+  missile: 0
   targetMoveAway: {fileID: 413901753}
   targetMoveToward: {fileID: 1883382756}
   generalTarget: {fileID: 0}

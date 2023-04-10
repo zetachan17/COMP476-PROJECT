@@ -24,10 +24,10 @@ public class PowerUp : MonoBehaviour
     
     private void Update()
     {
-        SelfDestroy();
+       // SelfDestroy();
     }
 
-    private void SelfDestroy()
+    public void SelfDestroy()
     {
         Destroy(gameObject, timeToDestroy);
     }
@@ -50,6 +50,7 @@ public class PowerUp : MonoBehaviour
             Destroy(gameObject);
         }
     }
+     
 
     private IEnumerator Wait() { 
         yield return new WaitForSeconds(duration);

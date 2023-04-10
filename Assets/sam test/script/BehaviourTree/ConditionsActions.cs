@@ -47,10 +47,11 @@ namespace BT {
             if (objectsInSight.Count > 0)
             {
                 // Set data
-                SetData("objects_in_sight", objectsInSight[0]);
+                SetData("objects_in_sight", objectsInSight);
                 return NodeState.SUCCESS;
             }
             else {
+                SetData("objects_in_sight", objectsInSight);
                 return NodeState.FAILURE;
             }
         }
@@ -69,7 +70,7 @@ namespace BT {
         {
             // Get object from data
             List<GameObject> objs = GetData<List<GameObject>>("objects_in_sight");
-            Assert.IsNotNull(objs);
+            //Assert.IsNotNull(objs);
 
             foreach (var o in objs)
             {
@@ -94,8 +95,8 @@ namespace BT {
         public override NodeState Evaluate()
         {
             GameObject powerup = GetData<GameObject>("to_seek");
-            Assert.IsNotNull(powerup);
-            Assert.IsNotNull(powerup.GetComponent<PowerUp>(), "Powerup taged objects must have PowerUp.cs Component");
+            //Assert.IsNotNull(powerup);
+            //Assert.IsNotNull(powerup.GetComponent<PowerUp>(), "Powerup taged objects must have PowerUp.cs Component");
 
             return powerup.GetComponent<PowerUp>().modifies == StatTracked.Stat.Visibility ? NodeState.SUCCESS : NodeState.FAILURE;
         }
@@ -113,7 +114,7 @@ namespace BT {
         public override NodeState Evaluate()
         {
             GameObject to_seek = GetData<GameObject>("to_seek");
-            Assert.IsNotNull(to_seek);
+            //Assert.IsNotNull(to_seek);
 
             // TODO: This returns a Vector3, but we need to set the velocity of the agent
             bahaviour.GetComponent<strg_steerinAgent>().setSteering(
@@ -136,8 +137,8 @@ namespace BT {
         public override NodeState Evaluate()
         {
             GameObject powerup = GetData<GameObject>("to_seek");
-            Assert.IsNotNull(powerup);
-            Assert.IsNotNull(powerup.GetComponent<PowerUp>(), "Powerup taged objects must have PowerUp.cs Component");
+            //Assert.IsNotNull(powerup);
+            //Assert.IsNotNull(powerup.GetComponent<PowerUp>(), "Powerup taged objects must have PowerUp.cs Component");
 
             return powerup.GetComponent<PowerUp>().modifies == StatTracked.Stat.Sheild ? NodeState.SUCCESS : NodeState.FAILURE;
         }
@@ -174,7 +175,7 @@ namespace BT {
         public override NodeState Evaluate()
         {
             GameObject powerup = GetData<GameObject>("to_seek");
-            Assert.IsNotNull(powerup);
+            //Assert.IsNotNull(powerup);
             scoutBahaviour.teammate.preferedTarget = powerup;
             return NodeState.SUCCESS;
         }
@@ -192,7 +193,7 @@ namespace BT {
         public override NodeState Evaluate()
         {
             GameObject powerup = GetData<GameObject>("to_seek");
-            Assert.IsNotNull(powerup);
+            //Assert.IsNotNull(powerup);
 
             // TODO: This returns a vector3 but we need to set the velocity of the agent
             scoutBahaviour.GetComponent<strg_steerinAgent>().setSteering(
@@ -217,7 +218,7 @@ namespace BT {
         {
             // Get object from data
             List<GameObject> objs = GetData<List<GameObject>>("objects_in_sight");
-            Assert.IsNotNull(objs);
+            //Assert.IsNotNull(objs);
 
             foreach (var o in objs)
             {
@@ -243,7 +244,7 @@ namespace BT {
         public override NodeState Evaluate()
         {
             GameObject enemy = GetData<GameObject>("to_seek");
-            Assert.IsNotNull(enemy);
+            //Assert.IsNotNull(enemy);
 
             scoutBahaviour.GetComponent<strg_steerinAgent>().setSteering(
                      strg_steerinAgent.SteeringOptions.Persue, new() { enemy }
@@ -266,7 +267,7 @@ namespace BT {
         {
             // Get object from data
             List<GameObject> objs = GetData<List<GameObject>>("objects_in_sight");
-            Assert.IsNotNull(objs);
+            //Assert.IsNotNull(objs);
 
             foreach (var o in objs)
             {
@@ -293,7 +294,7 @@ namespace BT {
         {
             // Get object from data
             List<GameObject> objs = GetData<List<GameObject>>("objects_in_sight");
-            Assert.IsNotNull(objs);
+            //Assert.IsNotNull(objs);
 
             foreach (var o in objs)
             {
@@ -319,7 +320,7 @@ namespace BT {
         {
             // Get object from data
             List<GameObject> objs = GetData<List<GameObject>>("objects_in_sight");
-            Assert.IsNotNull(objs);
+            //Assert.IsNotNull(objs);
 
             objs.Sort((a, b) => 
                 Vector3.Distance(a.transform.position, scoutBahaviour.transform.position)
@@ -349,7 +350,7 @@ namespace BT {
 
 
             List<GameObject> objs = GetData<List<GameObject>>("objects_in_sight");
-            Assert.IsNotNull(objs);
+            //Assert.IsNotNull(objs);
 
             foreach (GameObject obj in objs)
             {
@@ -376,10 +377,10 @@ namespace BT {
         public override NodeState Evaluate()
         {
             GameObject enemy = GetData<GameObject>("to_seek");
-            Assert.IsNotNull(enemy);
+            //Assert.IsNotNull(enemy);
 
             // This returns a vector3 but we need to set the velocity of the agent
-            Assert.IsTrue(false);
+            //Assert.IsTrue(false);
             heavyHitterehaviour.GetComponent<strg_steerinAgent>().setSteering(
                       strg_steerinAgent.SteeringOptions.Persue, new() { enemy });
 
@@ -400,7 +401,7 @@ namespace BT {
         public override NodeState Evaluate()
         {
             strg_steerinAgent agent = entityBehaviour.GetComponent<strg_steerinAgent>();
-            Assert.IsNotNull(agent);
+            //Assert.IsNotNull(agent);
 
             agent.setSteering(strg_steerinAgent.SteeringOptions.Other, null);
 

@@ -4,7 +4,7 @@ using UnityEngine;
 namespace BT {
 
     [Serializable]
-    public abstract class Tree : MonoBehaviour
+    public  class Tree : MonoBehaviour
     {
         [SerializeField] protected Node root;
 
@@ -19,7 +19,7 @@ namespace BT {
                 root.Evaluate();
         }
 
-        protected abstract Node SetupTree();
+        protected virtual Node SetupTree() { return null; }
     }
 
 }
