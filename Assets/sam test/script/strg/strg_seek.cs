@@ -48,7 +48,7 @@ public class strg_seek : MonoBehaviour
         Vector3 desiredVelocity = ( targetPoss - agent.transform.position );
         desiredVelocity = desiredVelocity.normalized * agent.maxSpeed;
 
-
+        /*
         // Calculate the angle between the current velocity and the desired velocity
         float angle = Vector3.Angle(agent.Velocity, desiredVelocity);
 
@@ -58,8 +58,8 @@ public class strg_seek : MonoBehaviour
         // Calculate the new desired velocity with the limited turn angle
         Vector3 newDesiredVelocity = Vector3.RotateTowards(desiredVelocity, agent.Velocity, turnAngle * Mathf.Deg2Rad, 0);
         newDesiredVelocity = newDesiredVelocity.normalized * agent.maxSpeed;
-
-        Vector3 steering = newDesiredVelocity - agent.Velocity;
+        */
+        Vector3 steering = desiredVelocity - agent.Velocity;
 
         return steering * weight;
 

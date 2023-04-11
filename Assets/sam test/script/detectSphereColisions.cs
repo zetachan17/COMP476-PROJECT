@@ -47,7 +47,7 @@ public class detectSphereColisions : MonoBehaviour
                 float angle = Vector3.Angle(velocity, colisonNomral);
                 Debug.Log(this.name + " at angle " + angle);
                 
-                if(angle <= 45)
+                if(angle <= 90)
                 {
                     Debug.Log(this.name + "was Hit in the front" + angle);
                     GetComponent<interShipCollision>().hitFromTheFront();
