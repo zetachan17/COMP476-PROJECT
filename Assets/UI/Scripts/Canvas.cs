@@ -29,6 +29,9 @@ public class Canvas : MonoBehaviour
     private Image _powerUpImage;
     private Image _powerUpDescription;
     
+    [Header("GAMEOVER")]
+    [SerializeField] private GameObject gameOverPanel;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -57,13 +60,15 @@ public class Canvas : MonoBehaviour
             currentTime = 0;
             DisplayTime(currentTime);
             // stop game
-
+            Time.timeScale = 0;
+            // show game over panel
+            gameOverPanel.SetActive(true);
             //Sam addition
             //winner[0]-> winnig tean number, winner[1]-> total score.
-            List<int> winner = GameObject.Find("gameManager").GetComponent<totalScore>().getWinner();
+            //List<int> winner = GameObject.Find("gameManager").GetComponent<totalScore>().getWinner();
             
             
-            Time.timeScale = 0;
+            
         }
     }
     
@@ -123,5 +128,14 @@ public class Canvas : MonoBehaviour
             default:
                 break;
         }
+    }
+    
+    public void PlayAgain()
+    {
+        // hide game over panel
+        gameOverPanel.SetActive(false);
+        // reload scene
+        Debug.Log("reloading scene");
+        UnityEngine.SceneManagement.SceneManager.LoadScene(1);
     }
 }
